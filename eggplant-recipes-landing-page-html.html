@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מתכוני חצילים</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
+        body {
+            font-family: 'Heebo', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4 max-w-lg">
+        <h1 class="text-2xl md:text-3xl font-bold mb-6 text-center">מתכוני חצילים</h1>
+        <div id="navigation" class="mb-4 flex justify-between">
+            <button id="homeButton" onclick="showCategories()" class="flex items-center text-blue-600 hover:text-blue-800 hidden text-sm md:text-base p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                דף ראשי
+            </button>
+            <button id="backButton" class="flex items-center text-blue-600 hover:text-blue-800 hidden text-sm md:text-base p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+                חזרה לקטגוריה
+            </button>
+        </div>
+        <div id="content"></div>
+    </div>
+
+    <script>
+    const categories = [
+      {
+        id: 1,
+        name: 'חצילים בתנור',
+        recipes: [
+          { id: 1, name: 'חציל על האש', ingredients: ['חציל', 'שמן זית', 'מלח'], instructions: 'צלו את החציל על האש עד שהעור שחור...' },
+          { id: 2, name: 'חציל ממולא', ingredients: ['חציל', 'בשר טחון', 'אורז'], instructions: 'חתכו את החציל לאורכו...' },
+          { id: 3, name: 'חציל בלאדי', ingredients: ['חציל', 'טחינה גולמית', 'לימון'], instructions: 'אפו את החציל בתנור על 200 מעלות...' },
+          { id: 4, name: 'חציל פרמזן בתנור', ingredients: ['חציל', 'גבינת פרמזן', 'רוטב עגבניות'], instructions: 'פרסו את החציל לפרוסות דקות...' },
+        ]
+      },
+      {
+        id: 2,
+        name: 'חצילים מטוגנים',
+        recipes: [
+          { id: 5, name: 'חציל מטוגן בשום', ingredients: ['חציל', 'שמן', 'שום'], instructions: 'חתכו את החציל לקוביות...' },
+          { id: 6, name: 'חציל פרמזן', ingredients: ['חציל', 'גבינת פרמזן', 'רוטב עגבניות'], instructions: 'פרסו את החציל לפרוסות...' },
+          { id: 7, name: 'צ׳יפס חציל', ingredients: ['חציל', 'קמח', 'תבלינים'], instructions: 'חתכו את החציל לרצועות דקות...' },
+          { id: 8, name: 'טמפורה חציל', ingredients: ['חציל', 'קמח טמפורה', 'מים קרים'], instructions: 'חתכו את החציל לפרוסות עבות...' },
+        ]
+      },
+      {
+        id: 3,
+        name: 'סלטי חצילים',
+        recipes: [
+          { id: 9, name: 'סלט חצילים בטחינה', ingredients: ['חציל', 'טחינה גולמית', 'לימון', 'שום'], instructions: 'קלו את החציל בתנור...' },
+          { id: 10, name: 'סלט חצילים ברוטב עגבניות', ingredients: ['חציל', 'עגבניות', 'פלפל אדום', 'בצל'], instructions: 'טגנו את החציל בקוביות...' },
+          { id: 11, name: 'סלט חציל יווני', ingredients: ['חציל', 'עגבניות שרי', 'גבינת פטה', 'זיתים'], instructions: 'צלו את החציל בתנור...' },
+          { id: 12, name: 'סלט חציל בלאדי', ingredients: ['חציל', 'פטרוזיליה', 'שום', 'לימון'], instructions: 'צלו את החציל על אש גלויה...' },
+        ]
+      },
+      {
+        id: 4,
+        name: 'מתכוני חציל מיוחדים',
+        recipes: [
+          { id: 13, name: 'מרק חציל קטיפתי', ingredients: ['חציל', 'שמנת', 'מרק ירקות', 'טימין'], instructions: 'קלו את החציל בתנור...' },
+          { id: 14, name: 'לזניית חצילים', ingredients: ['חציל', 'עלי לזניה', 'גבינות', 'רוטב עגבניות'], instructions: 'פרסו את החציל ואפו אותו...' },
+          { id: 15, name: 'קציצות חציל', ingredients: ['חציל', 'בצל', 'פירורי לחם', 'ביצים'], instructions: 'גרדו את החציל הקלוי...' },
+          { id: 16, name: 'מוס חציל', ingredients: ['חציל', 'שמנת חמוצה', 'שום', 'לימון'], instructions: 'קלו את החציל בתנור עד להשחמה...' },
+        ]
+      },
+    ];
+
+    let currentCategory = null;
+
+    function showCategories() {
+        const content = document.getElementById('content');
+        content.innerHTML = `
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                ${categories.map(category => `
+                    <div class="bg-white p-4 rounded shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="showRecipes(${category.id})">
+                        <h2 class="text-lg md:text-xl font-bold mb-2">${category.name}</h2>
+                        <p class="text-gray-600 text-sm md:text-base">${category.recipes.length} מתכונים</p>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        document.getElementById('homeButton').classList.add('hidden');
+        document.getElementById('backButton').classList.add('hidden');
+    }
+
+    function showRecipes(categoryId) {
+        currentCategory = categories.find(cat => cat.id === categoryId);
+        const content = document.getElementById('content');
+        content.innerHTML = `
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                ${currentCategory.recipes.map(recipe => `
+                    <div class="bg-white p-4 rounded shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="showRecipe(${recipe.id})">
+                        <h2 class="text-lg md:text-xl font-bold mb-2">${recipe.name}</h2>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        document.getElementById('homeButton').classList.remove('hidden');
+        document.getElementById('backButton').classList.add('hidden');
+    }
+
+    function showRecipe(recipeId) {
+        const recipe = currentCategory.recipes.find(r => r.id === recipeId);
+        const content = document.getElementById('content');
+        content.innerHTML = `
+            <div class="bg-white p-4 md:p-6 rounded shadow">
+                <h2 class="text-xl md:text-2xl font-bold mb-4">${recipe.name}</h2>
+                <h3 class="text-lg md:text-xl font-semibold mb-2">מצרכים:</h3>
+                <ul class="list-disc list-inside mb-4 text-sm md:text-base">
+                    ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                </ul>
+                <h3 class="text-lg md:text-xl font-semibold mb-2">הוראות הכנה:</h3>
+                <p class="text-sm md:text-base">${recipe.instructions}</p>
+            </div>
+        `;
+        document.getElementById('homeButton').classList.remove('hidden');
+        document.getElementById('backButton').classList.remove('hidden');
+        document.getElementById('backButton').onclick = () => showRecipes(currentCategory.id);
+    }
+
+    // התחל עם תצוגת הקטגוריות
+    showCategories();
+    </script>
+</body>
+</html>
