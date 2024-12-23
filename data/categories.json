@@ -1,0 +1,25 @@
+
+{
+    "categories": [
+        {
+            "name": "מנות קרות וסלטים",
+            "id": "salads",
+            "image": "assets/images/salads.jpg",
+            "subcategories": [
+                {
+                    "name": "סלטי טחינה וחציל",
+                    "recipes": [
+                        {"title": "סלט חצילים בטחינה", "image": "assets/images/tahini.jpg", "link": "pages/recipes/tahini.html"},
+                        {"title": "סלט חצילים ושום", "image": "assets/images/garlic.jpg", "link": "pages/recipes/garlic.html"}
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "מנות חמות ועיקריות",
+            "id": "main_dishes",
+            "image": "assets/images/main_dishes.jpg",
+            "subcategories": []
+        }
+    ]
+}
