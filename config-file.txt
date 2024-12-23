@@ -1,0 +1,19 @@
+title: מתכוני חצילים
+description: אוסף מתכוני חצילים מהמטבח הישראלי והעולמי
+baseurl: ""
+url: ""
+direction: rtl
+markdown: kramdown
+permalink: pretty
+
+collections:
+  recipes:
+    output: true
+    permalink: /recipes/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "recipes"
+    values:
+      layout: "recipe"

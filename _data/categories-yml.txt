@@ -1,0 +1,39 @@
+- id: cold-dishes
+  name: מנות קרות וסלטים
+  image: /images/categories/cold-dishes.jpg
+  subcategories:
+    - id: salad-types
+      name: סוגי סלטים
+      recipes:
+        - id: tahini-eggplant
+          name: סלטי טחינה וחציל
+        - id: eggplant-pomegranate
+          name: חציל ורימונים
+    - id: special-salads
+      name: סלטים מיוחדים
+      recipes:
+        - id: smoked-salads
+          name: סלטים מעושנים
+        - id: gourmet-salads
+          name: סלטי גורמה
+
+- id: hot-dishes
+  name: מנות חמות ועיקריות
+  image: /images/categories/hot-dishes.jpg
+  subcategories:
+    - id: stuffed-meat
+      name: ממולאים ובשר
+      recipes:
+        - id: meat-tomato
+          name: חצילים בבשר ועגבניות
+        - id: legumes
+          name: חצילים עם קטניות
+    - id: stews
+      name: תבשילים
+      recipes:
+        - id: festive-stews
+          name: תבשילים חגיגיים
+        - id: quick-recipes
+          name: מתכונים מהירים ופשוטים
+
+# [המשך הקטגוריות מהרשימה המקורית שלך...]

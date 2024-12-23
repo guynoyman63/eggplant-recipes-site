@@ -1,0 +1,26 @@
+---
+layout: default
+title: דף הבית
+---
+
+<div class="category-grid">
+    {% for category in site.data.categories %}
+    <div class="category-card">
+        {% if category.image %}
+        <img src="{{ category.image }}" alt="{{ category.name }}" class="category-image">
+        {% else %}
+        <div class="category-image"></div>
+        {% endif %}
+        <div class="category-content">
+            <h2>{{ category.name }}</h2>
+            <ul class="recipe-list">
+                {% for subcategory in category.subcategories %}
+                <li class="recipe-item">
+                    <a href="/categories/{{ category.id }}/{{ subcategory.id }}">{{ subcategory.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
