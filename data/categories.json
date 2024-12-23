@@ -12,6 +12,13 @@
                         {"title": "סלט חצילים בטחינה", "image": "assets/images/tahini.jpg", "link": "pages/recipes/tahini.html"},
                         {"title": "סלט חצילים ושום", "image": "assets/images/garlic.jpg", "link": "pages/recipes/garlic.html"}
                     ]
+                },
+                {
+                    "name": "חציל ורימונים",
+                    "recipes": [
+                        {"title": "סלט חצילים עם רימונים", "image": "assets/images/pomegranate.jpg", "link": "pages/recipes/pomegranate.html"},
+                        {"title": "סלט חצילים ושקדים", "image": "assets/images/almonds.jpg", "link": "pages/recipes/almonds.html"}
+                    ]
                 }
             ]
         },
@@ -19,7 +26,36 @@
             "name": "מנות חמות ועיקריות",
             "id": "main_dishes",
             "image": "assets/images/main_dishes.jpg",
-            "subcategories": []
+            "subcategories": [
+                {
+                    "name": "חצילים בבשר ועגבניות",
+                    "recipes": [
+                        {"title": "מוסקה", "image": "assets/images/moussaka.jpg", "link": "pages/recipes/moussaka.html"},
+                        {"title": "קדירת חצילים ובשר", "image": "assets/images/stew.jpg", "link": "pages/recipes/stew.html"}
+                    ]
+                },
+                {
+                    "name": "חצילים עם קטניות",
+                    "recipes": [
+                        {"title": "תבשיל חצילים וחומוס", "image": "assets/images/chickpeas.jpg", "link": "pages/recipes/chickpeas.html"},
+                        {"title": "תבשיל חצילים ועדשים", "image": "assets/images/lentils.jpg", "link": "pages/recipes/lentils.html"}
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "מרקים עם חצילים",
+            "id": "soups",
+            "image": "assets/images/soups.jpg",
+            "subcategories": [
+                {
+                    "name": "מרקים קרמיים וסמיכים",
+                    "recipes": [
+                        {"title": "מרק חצילים קרמי", "image": "assets/images/creamy_soup.jpg", "link": "pages/recipes/creamy_soup.html"},
+                        {"title": "מרק חצילים ועגבניות", "image": "assets/images/tomato_soup.jpg", "link": "pages/recipes/tomato_soup.html"}
+                    ]
+                }
+            ]
         }
     ]
 }
