@@ -1,17 +1,18 @@
 source "https://rubygems.org"
 
-# הגדרת גרסה ספציפית של Jekyll
-gem "jekyll", "~> 4.3.4"
+# שימוש בגירסה הנתמכת של Jekyll (מותאם ל-GitHub Pages)
+gem "github-pages", group: :jekyll_plugins
 
 # נושא Minimal Mistakes עבור Jekyll
 gem "minimal-mistakes-jekyll"
 
-# ג'מים נוספים לשיפור
-gem "jekyll-include-cache" # מאפשר שמירה בזיכרון של תבניות ב-Jekyll
-gem "jekyll-seo-tag"       # לשיפור SEO ותגיות Meta
-gem "jekyll-archives"      # לארכב פוסטים וקטגוריות
-gem "jekyll-data"          # מאפשר עבודה עם נתונים מתוך קבצי YAML
+# תוספים נתמכים רשמית ב-GitHub Pages
+gem "jekyll-include-cache" # משפר ביצועים על ידי שמירה בזיכרון של תבניות
+gem "jekyll-seo-tag"       # תוסף SEO רשמי של Jekyll
+gem "jekyll-sitemap"       # יצירת מפת אתר אוטומטית (חשוב ל-SEO)
+gem "jekyll-feed"          # יצירת RSS Feed אוטומטי
+gem "jekyll-paginate"      # תומך בדפים מרובים לבלוגים/קטגוריות
+gem "jekyll-redirect-from" # מאפשר הפניות מחדש לעמודים
 
-# הוספת הג'ם הבא אם אתה עובד עם מערכת Windows
-gem 'wdm', '>= 0.1.0', platform: :mswin if Gem.win_platform?
-
+# תמיכה ב-Windows (רק אם אתה עובד בסביבת Windows)
+gem "wdm", ">= 0.1.0", platform: :mswin if Gem.win_platform?
