@@ -52,4 +52,4 @@ navigation:
     url: "/about/"
 
 # עיצוב Minimal Mistakes
-minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "snow", "soll"
+#minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "snow", "soll"
