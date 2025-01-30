@@ -2,7 +2,7 @@ title: מתכוני חצילים
 description: אוסף מתכוני חצילים מהמטבח הישראלי והעולמי
 baseurl: "" # אם אתה משתמש ב-GitHub Pages, עדכן לשם הפרויקט
 url: "" # הכנס דומיין מותאם אישית אם יש
-theme: minimal-mistakes-jekyll
+#theme: minimal-mistakes-jekyll
 
 # תוספי Jekyll
 plugins:
