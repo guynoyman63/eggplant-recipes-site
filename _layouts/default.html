@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    {% include head.html %}
+</head>
+<body class="layout-body"> <!-- מאפשר Flexbox בגוף העמוד -->
+    <header class="site-header">
+        {% include header.html %}
+    </header>
+
+    <main class="main-content">
+        {{ content }}
+    </main>
+
+    <footer class="site-footer">
+        {% include footer.html %}
+    </footer>
+</body>
+</html>

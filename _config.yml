@@ -1,0 +1,55 @@
+title: מתכוני חצילים
+description: אוסף מתכוני חצילים מהמטבח הישראלי והעולמי
+baseurl: "" # אם אתה משתמש ב-GitHub Pages, עדכן לשם הפרויקט
+url: "" # הכנס דומיין מותאם אישית אם יש
+theme: minimal-mistakes-jekyll
+
+# תוספי Jekyll
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-data
+
+# הגדרת SCSS מותאם אישית
+sass:
+  sass_dir: assets/css
+
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# אוספים מותאמים אישית
+collections:
+  recipes:
+    output: true
+    permalink: /recipes/:path/
+  categories:
+    output: true
+    permalink: /categories/:path/
+
+# ברירת מחדל לדפים ומתכונים
+defaults:
+  - scope:
+      path: ""
+      type: "recipes"
+    values:
+      layout: "my_recipe"
+      permalink: /recipes/:title/
+      # אפשרות: להוסיף תיאור כללי או להגדיר שדות SEO בסיסיים
+      # description: "מקבץ מתכוני חצילים משובחים"
+      # keywords: "חצילים, מתכונים, מטבח ישראלי, אוכל"
+
+# ניווט מותאם אישית
+navigation:
+  - title: "דף הבית"
+    url: "/"
+  - title: "קטגוריות"
+    url: "/categories/"
+  - title: "מתכונים"
+    url: "/recipes/"
+  - title: "אודות"
+    url: "/about/"
+
+# עיצוב Minimal Mistakes
+minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "snow", "soll"

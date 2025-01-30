@@ -1,0 +1,85 @@
+- id: tahini-eggplant
+  title: סלט טחינה וחצילים
+  category: cold-dishes
+  subcategory: salad-types
+  image: /images/recipes/tahini-eggplant.jpg
+  prep_time: 15 דקות
+  cook_time: 0 דקות
+  servings: 4
+  difficulty: קל
+  ingredients:
+    - חציל
+    - טחינה
+  instructions:
+    - קולים את החציל.
+    - מערבבים עם טחינה.
+
+- id: eggplant-pomegranate
+  title: חציל ורימונים
+  category: cold-dishes
+  subcategory: salad-types
+  image: /images/recipes/eggplant-pomegranate.jpg
+  prep_time: 10 דקות
+  cook_time: 0 דקות
+  servings: 4
+  difficulty: קל
+  ingredients:
+    - חציל קלוי
+    - גרגרי רימון
+    - טחינה
+  instructions:
+    - קולים את החציל.
+    - מפזרים גרגרי רימון ומוסיפים טחינה.
+
+- id: meat-tomato
+  title: חצילים בבשר ועגבניות
+  category: hot-dishes
+  subcategory: stuffed-meat
+  image: /images/recipes/meat-tomato.jpg
+  prep_time: 20 דקות
+  cook_time: 40 דקות
+  servings: 6
+  difficulty: בינוני
+  ingredients:
+    - חציל
+    - בשר טחון
+    - עגבניות מרוסקות
+  instructions:
+    - חותכים את החציל לחצי ומרוקנים את תוכו.
+    - ממלאים בתערובת בשר טחון עם עגבניות.
+    - אופים בתנור עד להזהבה.
+
+- id: festive-stews
+  title: תבשיל חצילים חגיגי
+  category: hot-dishes
+  subcategory: stews
+  image: /images/recipes/festive-stews.jpg
+  prep_time: 25 דקות
+  cook_time: 60 דקות
+  servings: 6
+  difficulty: בינוני
+  ingredients:
+    - חצילים חתוכים לקוביות
+    - רוטב עגבניות
+    - גרגרי חומוס מבושלים
+  instructions:
+    - מקפיצים את החצילים במחבת עם שמן זית.
+    - מוסיפים את רוטב העגבניות וגרגרי החומוס.
+    - מבשלים על אש קטנה למשך שעה.
+
+- id: eggplant-carpaccio
+  title: קרפצ'יו חציל
+  category: gourmet-dishes
+  subcategory: chef-special
+  image: /images/recipes/eggplant-carpaccio.jpg
+  prep_time: 15 דקות
+  cook_time: 10 דקות
+  servings: 4
+  difficulty: מתקדם
+  ingredients:
+    - חציל קלוי
+    - שמן זית
+    - עלי בזיליקום
+  instructions:
+    - פורסים את החציל הקלוי לפרוסות דקות.
+    - מפזרים שמן זית ועלי בזיליקום.
