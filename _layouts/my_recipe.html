@@ -75,15 +75,17 @@ layout: default
 
       <div class="recipe-actions">
         {% if page.category and page.subcategory %}
-          <a href="/categories/{{ page.category }}/{{ page.subcategory }}/" class="btn">
+          <a href="{{ site.baseurl }}/categories/{{ page.category }}/{{ page.subcategory }}/" class="btn">
             <span class="icon"><i class="fas fa-arrow-circle-left"></i></span>
             חזרה לתת-קטגוריה
           </a>
         {% endif %}
-        <a href="/" class="btn">
+        
+        <a href="{{ site.baseurl }}/" class="btn">
           <span class="icon"><i class="fas fa-home"></i></span>
           חזרה לדף הבית
         </a>
+
         <button onclick="window.print()" class="btn">
           <span class="icon"><i class="fas fa-print"></i></span>
           הדפס מתכון
@@ -92,9 +94,10 @@ layout: default
     </article>
   </main>
 
- 
-
   <!-- ספריית אייקונים של Font Awesome (אם ברצונך להשתמש באייקונים) -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
 </body>
 </html>
