@@ -1,9 +1,7 @@
-title: מתכוני חצילים
-description: אוסף מתכוני חצילים מהמטבח הישראלי והעולמי
-baseurl: "/eggplant-recipes-site" # שם הריפוזיטורי שלך ב-GitHub Pages
-url: "https://guynoyman63.github.io" # כתובת האתר ב-GitHub Pages
-
-#theme: minimal-mistakes-jekyll
+title: "מתכוני חצילים"
+description: "אוסף מתכוני חצילים מהמטבח הישראלי והעולמי"
+baseurl: "/eggplant-recipes-site"  # שם הריפוזיטורי שלך ב-GitHub Pages
+url: "https://guynoyman63.github.io"  # כתובת האתר שלך
 
 # תוספי Jekyll
 plugins:
@@ -16,6 +14,7 @@ plugins:
 sass:
   sass_dir: assets/css
 
+# הגדרות Markdown & תבניות
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
@@ -24,10 +23,10 @@ permalink: pretty
 collections:
   recipes:
     output: true
-    permalink: /recipes/:path/
+    permalink: "/eggplant-recipes-site/recipes/:title/"
   categories:
     output: true
-    permalink: /categories/:path/
+    permalink: "/eggplant-recipes-site/categories/:title/"
 
 # ברירת מחדל לדפים ומתכונים
 defaults:
@@ -37,18 +36,35 @@ defaults:
     values:
       layout: "my_recipe"
       permalink: "/eggplant-recipes-site/recipes/:title/"
+      image: "/eggplant-recipes-site/images/default-recipe.jpg"  # תמונה ברירת מחדל
 
+  - scope:
+      path: ""
+      type: "categories"
+    values:
+      layout: "category_layout"
+      permalink: "/eggplant-recipes-site/categories/:title/"
 
 # ניווט מותאם אישית
 navigation:
   - title: "דף הבית"
-    url: "{{ site.baseurl }}/"
+    url: "/eggplant-recipes-site/"
   - title: "קטגוריות"
-    url: "{{ site.baseurl }}/categories/"
+    url: "/eggplant-recipes-site/categories/"
   - title: "מתכונים"
-    url: "{{ site.baseurl }}/recipes/"
+    url: "/eggplant-recipes-site/recipes/"
   - title: "אודות"
-    url: "{{ site.baseurl }}/about/"
+    url: "/eggplant-recipes-site/about/"
 
-# עיצוב Minimal Mistakes
-#minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "snow", "soll"
+# הגדרות SEO
+jekyll_seo_tag:
+  title_separator: "-"
+  social:
+    name: "מתכוני חצילים"
+    links:
+      - "https://www.instagram.com/yourprofile"
+      - "https://www.facebook.com/yourpage"
+
+# עיצוב Minimal Mistakes (במידה ויוחלט להשתמש)
+# theme: minimal-mistakes-jekyll
+# minimal_mistakes_skin: "dark"
