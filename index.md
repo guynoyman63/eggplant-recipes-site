@@ -22,7 +22,7 @@ permalink: /
                     {% if category.description %}
                     <p>{{ category.description }}</p>
                     {% endif %}
-                    <a href="{{ '/categories/' | append: category.id | relative_url }}" class="btn">לצפייה במתכונים</a>
+                    <a href="{{ site.baseurl }}/categories/{{ category.id }}/" class="btn">לצפייה במתכונים</a>
                 </div>
             </div>
             {% endfor %}
@@ -40,14 +40,13 @@ permalink: /
   }
 }
 
-
 /* עיצוב כפתורים */
 .btn,
 .view-category,
 .back-button {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: var(--button-bg-color)
+  background-color: var(--button-bg-color);
   color: #000;
   text-decoration: none;
   border-radius: 4px;
@@ -59,27 +58,24 @@ permalink: /
 .btn:hover,
 .view-category:hover,
 .back-button:hover {
-  background-color: var(--button-hover-bg-color)
+  background-color: var(--button-hover-bg-color);
   transform: translateY(-3px);
 }
 
 /* עיצוב דף הבית */
-/* ---------------------------------------------------------
-   דף הבית (index.md)
---------------------------------------------------------- */
 .category-page {
   padding: 2rem;
   text-align: center;
-  background-color:var(--secondary-color); /* צבע רקע מהשורש */
-  color: var(--text-color); /* טקסט קריא */
+  background-color: var(--secondary-color);
+  color: var(--text-color);
 }
 
 .category-page h1 {
-  font-size: 3.5rem; /* כותרת גדולה ומודגשת */
+  font-size: 3.5rem;
   margin-bottom: 1.5rem;
-  color: var(--text-color); /* צבע כותרת מותאם */
+  color: var(--text-color);
   text-transform: uppercase;
-  border-bottom: 2px solid rgba var(--text-color); /* קו תחתון עם שקיפות */
+  border-bottom: 2px solid var(--text-color);
   padding-bottom: 0.5rem;
 }
 
@@ -109,9 +105,9 @@ permalink: /
 }
 
 .category-card {
-  background-color: var(--card-bg-color); /* רקע מותאם */
+  background-color: var(--card-bg-color);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* צל רך */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
   padding: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -119,7 +115,7 @@ permalink: /
 
 .category-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* צל עבה יותר */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .category-card img {
@@ -133,15 +129,15 @@ permalink: /
 .category-card:hover img {
   transform: scale(1.03);
   opacity: 0.95;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* צל חזק יותר */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .category-image-placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--placeholder-bg-color); /* צבע מותאם לשורש */
-  color: var(--placeholder-text-color); /* צבע טקסט מותאם */
+  background-color: var(--placeholder-bg-color);
+  color: var(--placeholder-text-color);
   height: 160px;
   border-radius: 8px;
   font-size: 1rem;
@@ -154,25 +150,25 @@ permalink: /
 .category-content h2 {
   font-size: 1.4rem;
   margin: 0.7rem 0 0.5rem;
-  color:  var(--placeholder-text-color); /* צבע כותרות מותאם */
+  color: var(--placeholder-text-color);
   text-transform: uppercase;
   font-weight: bold;
 }
 
 .category-content p {
   font-size: 0.95rem;
-  color: var(--text-color); /* צבע טקסט כללי */
+  color: var(--text-color);
 }
 
 .category-content .btn {
   margin-top: 0.5rem;
-  background-color: var(--button-bg-color); /* כפתור ירוק זית */
-  color: var(--button-text-color); /* טקסט לבן */
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .category-content .btn:hover {
-  background-color: var(--button-hover-bg-color); /* כפתור כהה יותר */
+  background-color: var(--button-hover-bg-color);
   transform: translateY(-3px);
 }
 
@@ -191,5 +187,4 @@ permalink: /
     padding: 0.4rem 0.8rem;
   }
 }
-
 </style>
