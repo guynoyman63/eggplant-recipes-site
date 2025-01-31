@@ -36,7 +36,8 @@ defaults:
       type: "recipes"
     values:
       layout: "my_recipe"
-      permalink: "{{ site.baseurl }}/recipes/:title/"
+      permalink: "/eggplant-recipes-site/recipes/:title/"
+
 
 # ניווט מותאם אישית
 navigation:
