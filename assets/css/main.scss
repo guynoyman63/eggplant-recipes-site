@@ -1,0 +1,745 @@
+---
+---
+/* ---------------------------------------------------------
+   0) הגדרות Flexbox ל"Sticky Footer" + רקע בכל העמוד
+   --------------------------------------------------------- */
+   html,
+   body {
+     margin: 0;
+     padding: 0;
+     height: 100%;
+   }
+   
+   body {
+     display: flex;
+     flex-direction: column;
+     font-size: 1.1rem;
+     
+  background-size: cover;
+  background-color: var(--background-color); /* רקע נייטרלי */
+  font-family: 'Rubik', Arial, sans-serif;
+  color: var(--text-color); /* טקסט בהיר */
+     box-sizing: border-box;
+     animation: fadeIn 0.5s ease-in;
+   }
+   
+   .main-content {
+     flex: 1 0 auto;
+     margin-top: 300px;
+   
+     @media (max-width: 768px) {
+       margin-top: 110px;
+     }
+   }
+   
+   .site-footer {
+     flex-shrink: 0;
+     margin-top: 20px;
+     background: var(--primary-color);
+     color: var(--button-text-color);
+     padding: 1rem 0;
+     text-align: center;
+     position: relative;
+   
+     &::after {
+       content: "";
+       display: block;
+       height: 5px;
+       background-color: var(--accent-color);;
+     }
+   }
+   
+   /* ---------------------------------------------------------
+      1) משתני CSS
+      --------------------------------------------------------- */
+      
+      :root {
+        --primary-color: #1f7aca; /* כחול כהה - מתאים לכותרות עיקריות */
+        --secondary-color: #156D2F; /* ירוק כהה - מתאים לאלמנטים משניים */
+        --accent-color: #f8da53; /* צהוב - משמש להדגשות */
+        --background-color: #FAF3DD; /* רקע נייטרלי בהיר */
+        --text-color: #222; /* טקסט כהה לקריאה ברורה */
+    
+        --button-bg-color: #f8da53; /* רקע כפתור - צהוב */
+        --button-hover-bg-color: #B71919; /* אדום כהה לריחוף */
+        --button-text-color: #FFFFFF; /* טקסט לבן על כפתורים */
+    
+        --card-bg-color: #C8D5B9; /* רקע קלפים בגוון ירוק מעודן */
+        --card-hover-bg-color: #68B0AB; /* רקע כהה יותר בעת ריחוף */
+    
+        --placeholder-bg-color: var(--text-color); /* ירוק כהה לשדות קלט */
+        --placeholder-text-color: var(--text-color); /* טקסט כהה בשדות קלט */
+    }
+    
+      
+      
+      
+      
+      
+      
+   
+   /* ---------------------------------------------------------
+      2) כפתורים
+      --------------------------------------------------------- */
+      .btn {
+        display: inline-block;
+        background-color: var(--button-bg-color); /* ירוק זית */
+        color: var(--button-text-color); /* לבן */
+        padding: 0.6rem 1rem;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 700;
+        transition: all 0.3s ease;
+      }
+      
+      .btn:hover {
+        background-color: var(--button-hover-bg-color); /* ירוק כהה יותר */
+        transform: translateY(-3px);
+      }
+      
+   
+   /* ---------------------------------------------------------
+      3) Header
+      --------------------------------------------------------- */
+      .site-header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: linear-gradient(to bottom, rgba(46, 58, 36, 0.8), rgba(46, 58, 36, 0)), 
+                    url('/images/backgroundheader.jpg'); /* גרדיאנט ותמונה */
+        background-size: cover;
+        background-position: center;
+        color: var(--text-color); /* משתמש ב-:root */
+        padding: 1rem 0;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-bottom: none; /* ביטול קו תחתון גס */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צל עדין */
+      }
+      
+      /* שכבת מעבר בין ה-Header לרקע */
+      .site-header::after {
+        content: "";
+        position: absolute;
+        bottom: -20px; /* המרחק מהחלק התחתון של ה-header */
+        left: 0;
+        width: 100%;
+        height: 20px; /* גובה הקו המתשתש */
+        background: linear-gradient(to bottom, rgba(106, 142, 61, 0.3), rgba(46, 58, 36, 0));
+        pointer-events: none;
+        z-index: 99;
+      }
+      
+      /* התאמות למסכים קטנים */
+      @media (max-width: 768px) {
+        .site-header {
+          padding: 0.8rem 0; /* התאמת ריווח */
+        }
+      
+        .site-header::after {
+          height: 10px; /* הקטנת גובה הקו המתשתש */
+          bottom: -10px; /* התאמה למסכים קטנים */
+        }
+      }
+      
+      
+       
+   
+   
+   .site-logo {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-bottom: 0.5rem;
+     position: relative;
+     z-index: 2;
+   
+     img.logo-img {
+       max-height: 100px;
+       width: auto;
+       display: block;
+       background-color: rgba(255, 255, 255, 0.5);
+       padding: 5px;
+       border-radius: 8px;
+       transition: all 0.3s ease;
+   
+       @media (max-width: 768px) {
+         max-height: 60px;
+         margin-bottom: 0.3rem;
+       }
+     }
+   }
+   
+   .site-nav {
+     ul {
+       list-style: none;
+       padding: 0.5rem 1rem;
+       margin: 0.5rem 0 0;
+       display: flex;
+       justify-content: center;
+       gap: 4rem;
+       background-color: rgba(0, 0, 0, 0.4);
+       border-radius: 8px;
+       flex-wrap: nowrap;
+   
+       @media (max-width: 768px) {
+         gap: 0.8rem;
+         padding: 0.3rem 0.8rem;
+         overflow-x: auto;
+       }
+     }
+   
+     a {
+      color: var(--button-text-color);
+       text-decoration: none;
+       font-weight: 600;
+       font-size: 1.1rem;
+       transition: all 0.3s ease;
+       text-shadow: 1px 1px 2px var(--card-hover-bg-color);
+   
+       @media (max-width: 768px) {
+         font-size: 0.9rem;
+       }
+   
+       &:hover {
+         color: var(--button-bg-color);
+         transform: scale(1.1);
+       }
+     }
+   }
+   
+   /* ---------------------------------------------------------
+      4) דף המתכון
+      --------------------------------------------------------- */
+      .recipe-page {
+        max-width: 1000px;
+        margin: 0 auto 2rem;
+        padding: 2rem;
+        text-align: center;
+        background-color: var(--secondary-color);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        color: var(--text-color);
+    }
+    
+    .recipe-container {
+        margin-top: 3rem; /* ברירת מחדל למסכים גדולים */
+        background-color: var(--card-bg-color);
+        border-radius: 12px;
+        padding: 1.5rem 1rem; /* הקטנת Padding */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+    }
+    
+    .recipe-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.6);
+    }
+    
+    /* התאמה למסכים קטנים */
+    @media (max-width: 768px) {
+        .recipe-container {
+            margin-top: 2rem !important; /* הקטנת הרווח לנייד */
+            padding: 1rem !important;
+        }
+    
+        .recipe-page {
+            padding: 1rem !important; /* פחות רווח פנימי */
+           
+        }
+    }
+    
+    /* התאמה למסכים עוד יותר קטנים */
+    @media (max-width: 480px) {
+        .recipe-container {
+            margin-top: 2rem !important; /* כמעט אין רווח */
+            padding: 1rem !important;
+        }
+    }
+    
+    .recipe-header h1 {
+        font-size: 3rem;
+        color: var(--primary-color); /* #6B8E23 - ירוק זית */
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 1rem;
+    }
+    
+    .recipe-image {
+        max-width: 80%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5); /* שומר על הצללה רכה */
+        margin: 1rem auto 2rem;
+    }
+    
+    .recipe-meta {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 900px;
+        margin: 0 auto 2rem;
+        background-color: var(--card-bg-color); /* #2E3A24 - רקע כהה לכרטיסיות */
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+    
+    @media (max-width: 992px) {
+        .recipe-meta {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    .recipe-meta div {
+        background-color: var(--secondary-color); /* #4A5E3D - גוון ירוק נוסף */
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        padding: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .recipe-meta div .icon {
+        font-size: 1.8rem;
+        color: var(--background-color); /* #6B8E23 - טון זית */
+        margin-bottom: 0.5rem;
+    }
+    
+    .recipe-meta div:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        transform: scale(1.05);
+    }
+    
+    .ingredients,
+    .instructions {
+        margin-bottom: 2rem;
+        text-align: right;
+        direction: rtl;
+    }
+    
+    .ingredients h2,
+    .instructions h2 {
+        font-size: 1.6rem;
+        color: var(--primary-color); /* #6B8E23 - כותרת זית */
+        margin-bottom: 1rem;
+        padding-right: 190px;
+        position: relative;
+    }
+    
+    .ingredients h2::after,
+    .instructions h2::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        right: 180px;
+        width: 130px;
+        height: 2px;
+        background-color: var(--primary-color); /* קו תחתון */
+    }
+    
+    @media (max-width: 768px) {
+        .ingredients h2,
+        .instructions h2 {
+            text-align: center;
+            padding-right: 0;
+        }
+    
+        .ingredients h2::after,
+        .instructions h2::after {
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+        }
+    }
+    
+    .ingredients ol,
+    .instructions ol {
+        list-style: none;
+        margin: 0 auto;
+        line-height: 1.8;
+        max-width: 650px;
+        padding: 0;
+        text-align: right;
+    }
+    
+    .ingredients ol li,
+    .instructions ol li {
+        margin-bottom: 0.5rem;
+        counter-increment: step-counter;
+        display: flex;
+        align-items: flex-start;
+    }
+    
+    .ingredients ol li::before,
+    .instructions ol li::before {
+        content: counter(step-counter) ". ";
+        color: var(--secondary-color); /* #6B8E23 - מספר */
+        font-weight: bold;
+        margin-left: 10px;
+        width: 25px;
+        text-align: right;
+    }
+    
+    .chef-tip {
+        margin-top: 1.5rem;
+        background-color: var(--card-bg-color); /* #2E3A24 - רקע כהה */
+        color: var(--text-color); /* #F0F3F4 - טקסט בהיר */
+        padding: 1rem;
+        border-radius: 8px;
+        font-style: italic;
+    }
+    
+    /* -------- 🎯 עדכון הכפתורים -------- */
+    .recipe-actions {
+      display: flex;
+      justify-content: center;
+      gap: 5px; /* רווח קטן יותר בין הכפתורים */
+      flex-wrap: wrap; /* כפתורים עוברים שורות במידת הצורך */
+      margin-top: 15px;
+      max-width: 100%;
+  }
+  
+  .recipe-actions .btn {
+      flex: 1;
+      max-width: 150px; /* כפתורים קטנים יותר */
+      min-width: 100px; /* לא קטן מדי */
+      text-align: center;
+      padding: 8px 12px; /* ריווח קטן יותר */
+      font-size: 0.9rem; /* טקסט קטן יותר */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+  }
+  
+  /* אייקונים בכפתורים */
+  .recipe-actions .btn .icon {
+      font-size: 1rem;
+  }
+  
+  /* התאמה למסכים קטנים */
+  @media (max-width: 480px) {
+      .recipe-actions {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr); /* 2 כפתורים בשורה */
+          gap: 5px;
+          justify-items: center;
+      }
+  
+      /* חזרה לתת קטגוריה + חזרה לדף הבית יהיו בשורה אחת */
+      .recipe-actions a {
+          width: 100%;
+          max-width: 120px; /* מגביל את הרוחב */
+      }
+  
+      /* הדפס מתכון יהיה בשורה נפרדת */
+      .recipe-actions button {
+          grid-column: span 2; /* תופס את כל הרוחב */
+          width: 100%;
+          max-width: 120px; /* מגביל את הגודל */
+      }
+  }
+  
+    
+   
+   /* ---------------------------------------------------------
+      5) פריסת קטגוריה
+      --------------------------------------------------------- */
+      /* ---------------------------------------------------------
+   קטגוריה ראשית (category-page) - שדרוג לעיצוב תואם לתת-קטגוריה
+--------------------------------------------------------- */
+.category-page {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--card-bg-color); /* רקע כהה */
+  color: var(--text-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+  animation: fadeIn 0.5s ease-in;
+}
+
+.category-page h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  color: var(--accent-color); /* הדגשה בצבע הראשי */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+ /* border-bottom: 2px solid var(--accent-color); /* קו הדגשה */
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+/* ---------------------------------------------------------
+   עיצוב כרטיסיות קטגוריה
+-----------------------------------------*/
+.container-subcategory-page {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: var(--text-color); /* #F0F3F4 - טקסט בהיר */
+  border-radius: 8px;
+  padding: 2rem;
+
+  @media (max-width: 480px) {
+    max-width: 95%;
+    padding: 3rem 1rem 2rem;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    margin-top: 0;
+    color: var(--placeholder-bg-color);
+  }
+
+  .subcategory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .subcategory-card {
+    background-color: var(--card-bg-color); /* #4A5E3D - גוון כהה לכרטיסיות */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    }
+
+    .subcategory-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    &:hover .subcategory-image {
+      transform: scale(1.03);
+      opacity: 0.95;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .subcategory-content {
+      padding: 1rem;
+
+      h2 {
+        font-size: 1.3rem;
+        margin: 0.5rem 0;
+        color: var(--text-color);; /* #6B8E23 - כותרת */
+      }
+
+      .recipe-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 1rem auto;
+        text-align: left;
+        max-width: 90%;
+
+        li {
+          margin-bottom: 0.5rem;
+
+          a {
+            color: var(--primary-color); /* #A9DFBF - גוון ירוק רך */
+            text-decoration: none;
+            font-weight: bold;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      .view-subcategory {
+        @extend .btn;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  .back-button {
+    @extend .btn;
+    margin-top: 0.5rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   6) אנימציות
+   --------------------------------------------------------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) {
+  .site-nav a:hover,
+  .recipe-meta div:hover {
+    transform: scale(1.05);
+  }
+}
+
+
+   /* ---------------------------------------------------------
+   7) פריסת תת-קטגוריה (subcategory.html)
+   --------------------------------------------------------- */
+.subcategory-page {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border-radius: 8px;
+
+  @media (max-width: 480px) {
+    max-width: 95%;
+    padding: 3rem 1rem 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+    color: var(--placeholder-bg-color);
+  }
+
+  .recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .recipe-card {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.8);
+    }
+
+    .recipe-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s, opacity 0.3s, box-shadow 0.3s;
+    }
+    &:hover .recipe-image {
+      transform: scale(1.03);
+      opacity: 0.95;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    }
+
+    .recipe-image-placeholder {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 180px;
+      background-color: var(--placeholder-bg-color);
+      color: var(--text-color);
+      font-size: 0.9rem;
+      border-radius: 8px;
+    }
+
+    .recipe-content {
+      padding: 1rem;
+      h2 {
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+        color: var(--text-color);
+      }
+      a.btn {
+        @extend .btn;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  .navigation-buttons {
+    margin-top: 2rem;
+  }
+  .back-button {
+    @extend .btn;
+    margin-right: 1rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   8) עמוד "single" (למשל אודות)
+   --------------------------------------------------------- */
+.single {
+  max-width: 1200px;
+  margin: 5rem auto 2rem;
+  padding: 2rem;
+  text-align: right;
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  border-radius: 8px;
+}
+
+.single-header h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.breadcrumbs .back-button {
+  @extend .btn;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+   /* ---------------------------------------------------------
+      9) מדיה קווריז נוספים
+      --------------------------------------------------------- */
+   @media (max-width: 480px) {
+     .site-nav ul {
+       gap: 0.5rem;
+       padding: 0.2rem 0.5rem;
+     }
+     
+     .site-nav a {
+       font-size: 0.85rem;
+     }
+     
+     .site-logo img.logo-img {
+       max-height: 50px;
+       padding: 3px;
+     }
+     
+     .recipe-page .recipe-header h1 {
+       font-size: 2.2rem;
+     }
+   }
