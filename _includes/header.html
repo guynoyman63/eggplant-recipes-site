@@ -2,19 +2,18 @@
     <div class="header-inner">
       <!-- אזור הלוגו -->
       <div class="site-logo">
-        <a href="/">
-          <img src="{{ '/images/logo.png' | relative_url }}" alt="לוגו האתר" class="logo-img">
+        <a href="{{ site.baseurl }}/">
+          <img src="{{ site.baseurl }}/images/logo.png" alt="לוגו האתר" class="logo-img">
         </a>
       </div>
   
       <!-- תפריט ניווט -->
       <nav class="site-nav">
         <ul>
-          <li><a href="/">דף הבית</a></li>
-          <li><a href="/search/">חיפוש</a></li>
-          <li><a href="/about/">אודות חצילי נוימן</a></li>
+          <li><a href="{{ site.baseurl }}/">דף הבית</a></li>
+          <li><a href="{{ site.baseurl }}/search/">חיפוש</a></li>
+          <li><a href="{{ site.baseurl }}/about/">אודות חצילי נוימן</a></li>
         </ul>
       </nav>
     </div>
-  </header>
-  
+</header>
