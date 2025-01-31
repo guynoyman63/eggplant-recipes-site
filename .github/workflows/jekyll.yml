@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
@@ -31,9 +31,11 @@ jobs:
         run: bundle exec jekyll build
 
       - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-artifact@v4  # ✅ מעבר ל-v4
         with:
+          name: github-pages-artifact  # ✅ שם חדש למניעת התנגשות
           path: _site/
+          overwrite: true  # ✅ כדי לוודא שהעלאה קודמת לא תפריע
 
   deploy:
     needs: build
@@ -44,4 +46,4 @@ jobs:
 
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4  # ✅ שדרוג ל-v4
