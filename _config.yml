@@ -1,7 +1,8 @@
 title: מתכוני חצילים
 description: אוסף מתכוני חצילים מהמטבח הישראלי והעולמי
-baseurl: "" # אם אתה משתמש ב-GitHub Pages, עדכן לשם הפרויקט
-url: "" # הכנס דומיין מותאם אישית אם יש
+baseurl: "/eggplant-recipes-site" # שם הריפוזיטורי שלך ב-GitHub Pages
+url: "https://guynoyman63.github.io" # כתובת האתר ב-GitHub Pages
+
 #theme: minimal-mistakes-jekyll
 
 # תוספי Jekyll
@@ -35,21 +36,18 @@ defaults:
       type: "recipes"
     values:
       layout: "my_recipe"
-      permalink: /recipes/:title/
-      # אפשרות: להוסיף תיאור כללי או להגדיר שדות SEO בסיסיים
-      # description: "מקבץ מתכוני חצילים משובחים"
-      # keywords: "חצילים, מתכונים, מטבח ישראלי, אוכל"
+      permalink: "{{ site.baseurl }}/recipes/:title/"
 
 # ניווט מותאם אישית
 navigation:
   - title: "דף הבית"
-    url: "/"
+    url: "{{ site.baseurl }}/"
   - title: "קטגוריות"
-    url: "/categories/"
+    url: "{{ site.baseurl }}/categories/"
   - title: "מתכונים"
-    url: "/recipes/"
+    url: "{{ site.baseurl }}/recipes/"
   - title: "אודות"
-    url: "/about/"
+    url: "{{ site.baseurl }}/about/"
 
 # עיצוב Minimal Mistakes
 #minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "snow", "soll"
