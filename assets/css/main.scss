@@ -102,23 +102,24 @@
       3) Header
       --------------------------------------------------------- */
       .site-header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: linear-gradient(to bottom, rgba(46, 58, 36, 0.8), rgba(46, 58, 36, 0)), 
-                    url('/images/backgroundheader.jpg'); /* גרדיאנט ותמונה */
-        background-size: cover;
-        background-position: center;
-        color: var(--text-color); /* משתמש ב-:root */
-        padding: 1rem 0;
-        z-index: 100;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-bottom: none; /* ביטול קו תחתון גס */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צל עדין */
-      }
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(46, 58, 36, 0.8), rgba(46, 58, 36, 0)), 
+                url("{{ site.baseurl }}/images/backgroundheader.jpg"); /* גרדיאנט ותמונה */
+    background-size: cover;
+    background-position: center;
+    color: var(--text-color); /* משתמש ב-:root */
+    padding: 1rem 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none; /* ביטול קו תחתון גס */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צל עדין */
+}
+
       
       /* שכבת מעבר בין ה-Header לרקע */
       .site-header::after {
