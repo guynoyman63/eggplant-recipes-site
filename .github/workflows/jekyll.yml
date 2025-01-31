@@ -1,4 +1,3 @@
-
 name: Build and Deploy Jekyll site
 
 on:
@@ -15,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
@@ -32,7 +31,7 @@ jobs:
         run: bundle exec jekyll build
 
       - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
           path: _site/
 
