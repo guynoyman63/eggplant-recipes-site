@@ -1,62 +1,64 @@
+# 📌 קובץ הגדרות Jekyll עבור האתר
+
 title: "מתכוני חצילים"
 description: "אוסף מתכוני חצילים מהמטבח הישראלי והעולמי"
-baseurl: "/eggplant-recipes-site"  # שם הריפוזיטורי שלך ב-GitHub Pages
-url: "https://guynoyman63.github.io"  # כתובת האתר שלך
+baseurl: ""  # אין צורך בנתיב נוסף כי יש לך דומיין מותאם אישית
+url: "https://hatzileinoyman.co.il"  # הדומיין החדש שלך
 
-# תוספי Jekyll
+# 🔧 תוספי Jekyll
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-data
 
-# הגדרת SCSS מותאם אישית
+# 🎨 הגדרת SCSS מותאם אישית
 sass:
   sass_dir: assets/css
 
-# הגדרות Markdown & תבניות
+# ⚙️ הגדרות Markdown & תבניות
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 
-# אוספים מותאמים אישית
+# 📂 אוספים מותאמים אישית
 collections:
   recipes:
     output: true
-    permalink: "/eggplant-recipes-site/recipes/:title/"
+    permalink: "/recipes/:title/"
   categories:
     output: true
-    permalink: "/eggplant-recipes-site/categories/:title/"
+    permalink: "/categories/:title/"
 
-# ברירת מחדל לדפים ומתכונים
+# 🛠️ ברירת מחדל לדפים ומתכונים
 defaults:
   - scope:
       path: ""
       type: "recipes"
     values:
       layout: "my_recipe"
-      permalink: "/eggplant-recipes-site/recipes/:title/"
-      image: "/eggplant-recipes-site/images/default-recipe.jpg"  # תמונה ברירת מחדל
+      permalink: "/recipes/:title/"
+      image: "/images/default-recipe.jpg"  # תמונה ברירת מחדל
 
   - scope:
       path: ""
       type: "categories"
     values:
       layout: "category_layout"
-      permalink: "/eggplant-recipes-site/categories/:title/"
+      permalink: "/categories/:title/"
 
-# ניווט מותאם אישית
+# 🧭 ניווט מותאם אישית
 navigation:
   - title: "דף הבית"
-    url: "/eggplant-recipes-site/"
+    url: "/"
   - title: "קטגוריות"
-    url: "/eggplant-recipes-site/categories/"
+    url: "/categories/"
   - title: "מתכונים"
-    url: "/eggplant-recipes-site/recipes/"
+    url: "/recipes/"
   - title: "אודות"
-    url: "/eggplant-recipes-site/about/"
+    url: "/about/"
 
-# הגדרות SEO
+# 🔍 הגדרות SEO
 jekyll_seo_tag:
   title_separator: "-"
   social:
@@ -65,6 +67,6 @@ jekyll_seo_tag:
       - "https://www.instagram.com/yourprofile"
       - "https://www.facebook.com/yourpage"
 
-# עיצוב Minimal Mistakes (במידה ויוחלט להשתמש)
+# 🎨 עיצוב Minimal Mistakes (במידה ויוחלט להשתמש)
 # theme: minimal-mistakes-jekyll
 # minimal_mistakes_skin: "dark"
