@@ -23,10 +23,10 @@ permalink: pretty
 collections:
   recipes:
     output: true
-    permalink: "/eggplant-recipes-site/recipes/:title/"
+    permalink: "/recipes/:title/"
   categories:
     output: true
-    permalink: "/eggplant-recipes-site/categories/:title/"
+    permalink: "/categories/:title/"
 
 # ברירת מחדל לדפים ומתכונים
 defaults:
@@ -35,26 +35,26 @@ defaults:
       type: "recipes"
     values:
       layout: "my_recipe"
-      permalink: "/eggplant-recipes-site/recipes/:title/"
-      image: "/eggplant-recipes-site/images/default-recipe.jpg"  # תמונה ברירת מחדל
+      permalink: "/recipes/:title/"
+      image: "/images/default-recipe.jpg"  # תמונה ברירת מחדל
 
   - scope:
       path: ""
       type: "categories"
     values:
       layout: "category_layout"
-      permalink: "/eggplant-recipes-site/categories/:title/"
+      permalink: "/categories/:title/"
 
 # ניווט מותאם אישית
 navigation:
   - title: "דף הבית"
-    url: "/eggplant-recipes-site/"
+    url: "/"
   - title: "קטגוריות"
-    url: "/eggplant-recipes-site/categories/"
+    url: "/categories/"
   - title: "מתכונים"
-    url: "/eggplant-recipes-site/recipes/"
+    url: "/recipes/"
   - title: "אודות"
-    url: "/eggplant-recipes-site/about/"
+    url: "/about/"
 
 # הגדרות SEO
 jekyll_seo_tag:
