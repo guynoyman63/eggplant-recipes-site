@@ -4,7 +4,7 @@ title: "מתכוני חצילים"
 description: "אוסף מתכוני חצילים מהמטבח הישראלי והעולמי"
 baseurl: ""  # אין צורך בנתיב נוסף כי יש לך דומיין מותאם אישית
 url: "https://hatzileinoyman.co.il"  # הדומיין החדש שלך
-
+baseurl: ""
 # 🔧 תוספי Jekyll
 plugins:
   - jekyll-feed
