@@ -22,7 +22,7 @@ layout: default
           <ul class="recipe-list">
             {% for recipe in subcategory.recipes %}
             <li>
-              <a href="/recipes/{{ recipe.id }}/">{{ recipe.name }}</a>
+              <a href="{{ site.baseurl }}/recipes/{{ recipe.id }}/">{{ recipe.name }}</a>
             </li>
             {% endfor %}
           </ul>
@@ -30,7 +30,7 @@ layout: default
           <p>לא נמצאו מתכונים לתת־קטגוריה הזו.</p>
           {% endif %}
           
-          <a href="{{ '/categories/' | append: page.category | append: '/' | append: subcategory.id | relative_url }}" class="view-subcategory">
+          <a href="{{ site.baseurl }}/categories/{{ page.category }}/{{ subcategory.id }}/" class="view-subcategory">
             צפייה במתכונים נוספים
           </a>
         </div>
@@ -41,5 +41,5 @@ layout: default
     {% endif %}
   </div>
 
-  <a href="/" class="back-button">חזרה לדף הבית</a>
+  <a href="{{ site.baseurl }}/" class="back-button">חזרה לדף הבית</a>
 </div>
