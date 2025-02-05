@@ -18,15 +18,15 @@ layout: default
         <img 
           src="{{ recipe.image | relative_url }}" 
           alt="{{ recipe.title }}" 
-          class="recipe-image>  <h2>{{ recipe.title }}</h2>
+          class="recipe-image"
+        >
         {% else %}
         <div class="recipe-image-placeholder">אין תמונה זמינה</div>
         {% endif %}
         
         <div class="recipe-content">
-          <h2>{{ recipe.title }}</h2>
-         
-          <a href="{{ site.baseurl }}/recipes/{{ recipe.id }}/" class="btn">
+          <h2>{{ }}</h2>
+          <a href="/recipes/{{ recipe.id }}/" class="btn">
             צפה במתכון
           </a>
         </div>
