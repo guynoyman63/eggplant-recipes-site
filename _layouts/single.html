@@ -2,17 +2,21 @@
 layout: default
 ---
 
-<article class="single">
-    <header class="single-header">
-        <h1>{{ page.title }}</h1>
-        {% if page.subtitle %}
-        <h2>{{ page.subtitle }}</h2>
-        {% endif %}
-        <nav class="breadcrumbs">
-            <a href="/" class="back-button">חזרה לדף הבית</a>
-        </nav>
-    </header>
-    <div class="single-content">
-        {{ content }}
-    </div>
+<article class="single about-page">
+  <!-- כותרת עליונה -->
+  <header class="about-header">
+    <h1>אודות חצילי נוימן</h1>
+  </header>
+  <img src="/images/about.jpg" alt="תמונת אודות" class="about-banner" />
+  
+  <!-- תוכן העמוד (נטען מ-about.md או כל עמוד אחר עם layout: single) -->
+  <div class="about-content">
+    {{ content }}
+  </div>
+
+  <!-- כפתור חזרה לדף הבית בתחתית (באמצע) -->
+  <div class="about-actions">
+    <a href="/" class="btn back-home">חזרה לדף הבית</a>
+  </div>
 </article>
+
