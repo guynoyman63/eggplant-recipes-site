@@ -1,6 +1,25 @@
-baseurl: "/eggplant-recipes-site" 
-url: "https://guynoyman63.github.io" 
+title: "מתכוני חצילים"
+description: "אוסף מתכוני חצילים מהמטבח הישראלי והעולמי"
+baseurl: ""  # שם הריפוזיטורי שלך ב-GitHub Pages
+url: "https://https://hatzileinoyman.co.il/"  # כתובת האתר שלך
 
+# תוספי Jekyll
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-data
+
+# הגדרת SCSS מותאם אישית
+sass:
+  sass_dir: assets/css
+
+# הגדרות Markdown & תבניות
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# אוספים מותאמים אישית
 collections:
   recipes:
     output: true
@@ -9,12 +28,43 @@ collections:
     output: true
     permalink: "/eggplant-recipes-site/categories/:title/"
 
+# ברירת מחדל לדפים ומתכונים
+defaults:
+  - scope:
+      path: ""
+      type: "recipes"
+    values:
+      layout: "my_recipe"
+      permalink: "/eggplant-recipes-site/recipes/:title/"
+      image: "/eggplant-recipes-site/images/default-recipe.jpg"  # תמונה ברירת מחדל
+
+  - scope:
+      path: ""
+      type: "categories"
+    values:
+      layout: "category_layout"
+      permalink: "/eggplant-recipes-site/categories/:title/"
+
+# ניווט מותאם אישית
 navigation:
   - title: "דף הבית"
-    url: "{{ site.baseurl }}/"
+    url: "/eggplant-recipes-site/"
   - title: "קטגוריות"
-    url: "{{ site.baseurl }}/categories/"
+    url: "/eggplant-recipes-site/categories/"
   - title: "מתכונים"
-    url: "{{ site.baseurl }}/recipes/"
+    url: "/eggplant-recipes-site/recipes/"
   - title: "אודות"
-    url: "{{ site.baseurl }}/about/"
+    url: "/eggplant-recipes-site/about/"
+
+# הגדרות SEO
+jekyll_seo_tag:
+  title_separator: "-"
+  social:
+    name: "מתכוני חצילים"
+    links:
+      - "https://www.instagram.com/yourprofile"
+      - "https://www.facebook.com/yourpage"
+
+# עיצוב Minimal Mistakes (במידה ויוחלט להשתמש)
+# theme: minimal-mistakes-jekyll
+# minimal_mistakes_skin: "dark"
