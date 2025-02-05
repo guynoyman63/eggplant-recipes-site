@@ -5,24 +5,25 @@ layout: default
 <div class="category-page container-subcategory-page">
   <h1>{{ page.title }}</h1>
 
-  {% assign category_data = site.data.categories | where: "id", page.category %}
-
+  <!-- טעינת רשימת המתכונים ישירות מתיקיית _recipes -->
   <div class="subcategory-grid">
-    {% if category_data.size > 0 %}
-      {% for subcategory in category_data[0].subcategories %}
+    {% assign subcategories = site.recipes | where: "category", page.category | group_by: "subcategory" %}
+
+    {% if subcategories.size > 0 %}
+      {% for subcategory in subcategories %}
       <div class="subcategory-card">
-        {% if subcategory.image %}
-        <img src="{{ subcategory.image | relative_url }}" alt="{{ subcategory.name }}" class="subcategory-image">
+        {% if subcategory.items[0].image %}
+        <img src="{{ subcategory.items[0].image | relative_url }}" alt="{{ subcategory.name }}" class="subcategory-image">
         {% endif %}
         
         <div class="subcategory-content">
           <h2>{{ subcategory.name }}</h2>
           
-          {% if subcategory.recipes and subcategory.recipes.size > 0 %}
+          {% if subcategory.items.size > 0 %}
           <ul class="recipe-list">
-            {% for recipe in subcategory.recipes %}
+            {% for recipe in subcategory.items %}
             <li>
-              <a href="{{ site.baseurl }}/recipes/{{ recipe.id }}/">{{ recipe.name }}</a>
+              <a href="{{ recipe.url | relative_url }}">{{ recipe.title }}</a>
             </li>
             {% endfor %}
           </ul>
@@ -30,7 +31,7 @@ layout: default
           <p>לא נמצאו מתכונים לתת־קטגוריה הזו.</p>
           {% endif %}
           
-          <a href="{{ site.baseurl }}/categories/{{ page.category }}/{{ subcategory.id }}/" class="view-subcategory">
+          <a href="{{ site.baseurl }}/categories/{{ page.category }}/{{ subcategory.name | slugify }}/" class="view-subcategory">
             צפייה במתכונים נוספים
           </a>
         </div>
