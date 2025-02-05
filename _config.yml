@@ -1,53 +1,46 @@
-# 📌 קובץ הגדרות Jekyll עבור האתר
+title: מתכוני חצילים
+description: אוסף מתכוני חצילים מהמטבח הישראלי והעולמי
+baseurl: "" # אם אתה משתמש ב-GitHub Pages, עדכן לשם הפרויקט
+url: "" # הכנס דומיין מותאם אישית אם יש
+#theme: minimal-mistakes-jekyll
 
-title: "מתכוני חצילים"
-description: "אוסף מתכוני חצילים מהמטבח הישראלי והעולמי"
-baseurl: ""  # אין צורך בנתיב נוסף כי יש לך דומיין מותאם אישית
-url: "https://hatzileinoyman.co.il"  # הדומיין החדש שלך
-baseurl: ""
-# 🔧 תוספי Jekyll
+# תוספי Jekyll
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-data
 
-# 🎨 הגדרת SCSS מותאם אישית
+# הגדרת SCSS מותאם אישית
 sass:
   sass_dir: assets/css
 
-# ⚙️ הגדרות Markdown & תבניות
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 
-# 📂 אוספים מותאמים אישית
+# אוספים מותאמים אישית
 collections:
   recipes:
     output: true
-    permalink: "/recipes/:title/"
+    permalink: /recipes/:path/
   categories:
     output: true
-    permalink: "/categories/:title/"
+    permalink: /categories/:path/
 
-# 🛠️ ברירת מחדל לדפים ומתכונים
+# ברירת מחדל לדפים ומתכונים
 defaults:
   - scope:
       path: ""
       type: "recipes"
     values:
       layout: "my_recipe"
-      permalink: "/recipes/:title/"
-      image: "/images/default-recipe.jpg"  # תמונה ברירת מחדל
+      permalink: /recipes/:title/
+      # אפשרות: להוסיף תיאור כללי או להגדיר שדות SEO בסיסיים
+      # description: "מקבץ מתכוני חצילים משובחים"
+      # keywords: "חצילים, מתכונים, מטבח ישראלי, אוכל"
 
-  - scope:
-      path: ""
-      type: "categories"
-    values:
-      layout: "category_layout"
-      permalink: "/categories/:title/"
-
-# 🧭 ניווט מותאם אישית
+# ניווט מותאם אישית
 navigation:
   - title: "דף הבית"
     url: "/"
@@ -58,15 +51,5 @@ navigation:
   - title: "אודות"
     url: "/about/"
 
-# 🔍 הגדרות SEO
-jekyll_seo_tag:
-  title_separator: "-"
-  social:
-    name: "מתכוני חצילים"
-    links:
-      - "https://www.instagram.com/yourprofile"
-      - "https://www.facebook.com/yourpage"
-
-# 🎨 עיצוב Minimal Mistakes (במידה ויוחלט להשתמש)
-# theme: minimal-mistakes-jekyll
-# minimal_mistakes_skin: "dark"
+# עיצוב Minimal Mistakes
+#minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "snow", "soll"
