@@ -1,7 +1,7 @@
 title: "מתכוני חצילים"
 description: "אוסף מתכוני חצילים מהמטבח הישראלי והעולמי"
 baseurl: ""  # שם הריפוזיטורי שלך ב-GitHub Pages
-url: "https://https://hatzileinoyman.co.il/"  # כתובת האתר שלך
+url: "/hatzileinoyman.co.il/"  # כתובת האתר שלך
 
 # תוספי Jekyll
 plugins:
