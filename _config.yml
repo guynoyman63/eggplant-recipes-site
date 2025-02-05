@@ -1,25 +1,27 @@
+# 📌 קובץ הגדרות Jekyll עבור האתר
+
 title: "מתכוני חצילים"
 description: "אוסף מתכוני חצילים מהמטבח הישראלי והעולמי"
-baseurl: ""  # שם הריפוזיטורי שלך ב-GitHub Pages
-url: "/hatzileinoyman.co.il/"  # כתובת האתר שלך
+baseurl: ""  # אין צורך בנתיב נוסף כי יש לך דומיין מותאם אישית
+url: "https://hatzileinoyman.co.il"  # הדומיין החדש שלך
 
-# תוספי Jekyll
+# 🔧 תוספי Jekyll
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-data
 
-# הגדרת SCSS מותאם אישית
+# 🎨 הגדרת SCSS מותאם אישית
 sass:
   sass_dir: assets/css
 
-# הגדרות Markdown & תבניות
+# ⚙️ הגדרות Markdown & תבניות
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 
-# אוספים מותאמים אישית
+# 📂 אוספים מותאמים אישית
 collections:
   recipes:
     output: true
@@ -28,7 +30,7 @@ collections:
     output: true
     permalink: "/categories/:title/"
 
-# ברירת מחדל לדפים ומתכונים
+# 🛠️ ברירת מחדל לדפים ומתכונים
 defaults:
   - scope:
       path: ""
@@ -45,7 +47,7 @@ defaults:
       layout: "category_layout"
       permalink: "/categories/:title/"
 
-# ניווט מותאם אישית
+# 🧭 ניווט מותאם אישית
 navigation:
   - title: "דף הבית"
     url: "/"
@@ -56,7 +58,7 @@ navigation:
   - title: "אודות"
     url: "/about/"
 
-# הגדרות SEO
+# 🔍 הגדרות SEO
 jekyll_seo_tag:
   title_separator: "-"
   social:
@@ -65,6 +67,6 @@ jekyll_seo_tag:
       - "https://www.instagram.com/yourprofile"
       - "https://www.facebook.com/yourpage"
 
-# עיצוב Minimal Mistakes (במידה ויוחלט להשתמש)
+# 🎨 עיצוב Minimal Mistakes (במידה ויוחלט להשתמש)
 # theme: minimal-mistakes-jekyll
 # minimal_mistakes_skin: "dark"
