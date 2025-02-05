@@ -5,9 +5,9 @@ layout: default
 <div class="subcategory-page">
   <h1>{{ page.title }}</h1>
 
-  <!-- לולאה על מתכונים מתוך site.data.recipes, לפי הקטגוריה ותת־קטגוריה -->
+  <!-- שליפת מתכונים מתיקיית _recipes -->
   <div class="recipe-grid">
-    {% assign recipe_list = site.data.recipes 
+    {% assign recipe_list = site.recipes 
       | where: "category", page.category
       | where: "subcategory", page.subcategory 
     %}
@@ -26,7 +26,7 @@ layout: default
         
         <div class="recipe-content">
           <h2>{{ recipe.title }}</h2>
-          <a href="{{ site.baseurl }}/recipes/{{ recipe.id }}/" class="btn">
+          <a href="{{ recipe.url | relative_url }}" class="btn">
             צפה במתכון
           </a>
         </div>
