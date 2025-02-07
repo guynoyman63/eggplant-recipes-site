@@ -4,6 +4,7 @@
     {% include head.html %}
 </head>
 <body class="layout-body"> <!-- מאפשר Flexbox בגוף העמוד -->
+    
     <header class="site-header">
         {% include header.html %}
     </header>
@@ -15,5 +16,36 @@
     <footer class="site-footer">
         {% include footer.html %}
     </footer>
+
+    <!-- כפתור נגישות -->
+    <button id="accessibility-btn" onclick="toggleAccessibility()" class="accessibility-button">
+        🦾 נגישות
+    </button>
+
+    <!-- סקריפט לנגישות -->
+    <script>
+        function toggleAccessibility() {
+            document.body.classList.toggle("high-contrast");
+            document.body.classList.toggle("large-text");
+
+            // שמירת ההגדרה בלוקאלי כדי להפעיל גם בדפים אחרים
+            let isHighContrast = document.body.classList.contains("high-contrast");
+            let isLargeText = document.body.classList.contains("large-text");
+
+            localStorage.setItem("highContrast", isHighContrast);
+            localStorage.setItem("largeText", isLargeText);
+        }
+
+        // טעינת מצב הנגישות אם הופעל בעבר
+        window.onload = function() {
+            if (localStorage.getItem("highContrast") === "true") {
+                document.body.classList.add("high-contrast");
+            }
+            if (localStorage.getItem("largeText") === "true") {
+                document.body.classList.add("large-text");
+            }
+        };
+    </script>
+
 </body>
 </html>
