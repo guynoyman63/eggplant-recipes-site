@@ -1,216 +1,301 @@
 ---
 ---
 /* ---------------------------------------------------------
-   0) הגדרות Flexbox ל"Sticky Footer" + רקע בכל העמוד
+   0) הגדרות כלליות
    --------------------------------------------------------- */
-   html,
-   body {
-     margin: 0;
-     padding: 0;
-     height: 100%;
-   }
-   
-   body {
-     display: flex;
-     flex-direction: column;
-     font-size: 1.1rem;
-     
-  background-size: cover;
-  background-color: var(--background-color); /* רקע נייטרלי */
-  font-family: 'Rubik', Arial, sans-serif;
-  color: var(--text-color); /* טקסט בהיר */
-     box-sizing: border-box;
-     animation: fadeIn 0.5s ease-in;
-   }
-   
-   .main-content {
-     flex: 1 0 auto;
-     margin-top: 300px;
-   
-     @media (max-width: 768px) {
-       margin-top: 110px;
-     }
-   }
-   
-   .site-footer {
-     flex-shrink: 0;
-     margin-top: 20px;
-     background: var(--primary-color);
-     color: var(--button-text-color);
-     padding: 1rem 0;
-     text-align: center;
-     position: relative;
-   
-     &::after {
-       content: "";
-       display: block;
-       height: 5px;
-       background-color: var(--accent-color);;
-     }
-   }
-   
-   /* ---------------------------------------------------------
-      1) משתני CSS
-      --------------------------------------------------------- */
-      
-      :root {
-        --primary-color: #4A7C59; /* ירוק עמוק - מתאים לכותרות עיקריות */
-        --secondary-color: #68B0AB; /* כחול-ירקרק בינוני */
-        --accent-color: #8FCOA9; /* ירוק-כחול רך - להדגשות */
-        --background-color: #FAF3DD; /* רקע נייטרלי בהיר */
-        --text-color: #222; /* טקסט כהה לקריאה ברורה */
-        --button-bg-color: #5ead88; /* רקע כפתור */
-        --button-hover-bg-color: #4A7C59; /* צבע כהה יותר לריחוף */
-        --button-text-color: #FFFFFF; /* טקסט לבן על כפתורים */
-        --card-bg-color: #C8D5B9; /* רקע קלפים בגוון ירוק מעודן */
-        --card-hover-bg-color: #68B0AB; /* רקע כהה יותר בעת ריחוף */
-        --placeholder-bg-color: var(--secondary-color); /* גוון ירקרק עדין */
-        --placeholder-text-color: var(--text-color); /* טקסט כהה */
-        --row-stripe-even: #dee7eae2;
-        --row-stripe-odd: #93dae4bc;
-        --heading-stripe-odd: #68B0AB;
-        --heading-stripe-even: #f98810;
-         /*---------------צבעים שהם לדף הבית בלבד-----------------*/
-        --page-bg-color: #EDF2E0; /* רקע כללי לדף */
-        --category-bg-color: #d7efb6; /* רקע רגיל לקטגוריות */
-        --category-bg-alt: #D0DFC0; /* רקע שונה לכל קטגוריה שנייה */
-        --category-border-color: #B0C5A0; /* מסגרת לכל קטגוריה */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
-      }
-      
-   
-   /* ---------------------------------------------------------
-      2) כפתורים
-      --------------------------------------------------------- */
-      .btn {
-        display: inline-block;
-        background-color: var(--button-bg-color); /* ירוק זית */
-        color: var(--button-text-color); /* לבן */
-        padding: 0.6rem 1rem;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 700;
-        transition: all 0.3s ease;
-      }
-      
-      .btn:hover {
-        background-color: var(--button-hover-bg-color); /* ירוק כהה יותר */
-        transform: translateY(-3px);
-      }
-      
-   
-   /* ---------------------------------------------------------
-      3) Header
-      --------------------------------------------------------- */
-      .site-header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: 
-                    url('/images/backgroundheader.jpg'); /* גרדיאנט ותמונה */
-        background-size: cover;
-        background-position: center;
-        color: var(--text-color); /* משתמש ב-:root */
-        padding: 1rem 0;
-        z-index: 100;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-bottom: none; /* ביטול קו תחתון גס */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צל עדין */
-      }
-      
-      /* שכבת מעבר בין ה-Header לרקע */
-      .site-header::after {
-        content: "";
-        position: absolute;
-        bottom: -20px; /* המרחק מהחלק התחתון של ה-header */
-        left: 0;
-        width: 100%;
-        height: 20px; /* גובה הקו המתשתש */
-        background: linear-gradient(to bottom, rgba(106, 142, 61, 0.3), rgba(46, 58, 36, 0));
-        pointer-events: none;
-        z-index: 99;
-      }
-      
-      /* התאמות למסכים קטנים */
-      @media (max-width: 768px) {
-        .site-header {
-          padding: 0.8rem 0; /* התאמת ריווח */
-        }
-      
-        .site-header::after {
-          height: 10px; /* הקטנת גובה הקו המתשתש */
-          bottom: -10px; /* התאמה למסכים קטנים */
-        }
-      }
-      
-      
-       
-   
-   
-   .site-logo {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     margin-bottom: 0.5rem;
-     position: relative;
-     z-index: 2;
-   
-     img.logo-img {
-       max-height: 100px;
-       width: auto;
-       display: block;
-       background-color: rgba(255, 255, 255, 0.5);
-       padding: 5px;
-       border-radius: 8px;
-       transition: all 0.3s ease;
-   
-       @media (max-width: 768px) {
-         max-height: 60px;
-         margin-bottom: 0.3rem;
-       }
-     }
-   }
-   
-   .site-nav {
-     ul {
-       list-style: none;
-       padding: 0.5rem 1rem;
-       margin: 0.5rem 0 0;
-       display: flex;
-       justify-content: center;
-       gap: 4rem;
-       background-color: rgba(0, 0, 0, 0.4);
-       border-radius: 8px;
-       flex-wrap: nowrap;
-   
-       @media (max-width: 768px) {
-         gap: 0.8rem;
-         padding: 0.3rem 0.8rem;
-         overflow-x: auto;
-       }
-     }
-   
-     a {
-      color: var(--button-text-color);
-       text-decoration: none;
-       font-weight: 600;
-       font-size: 1.1rem;
-       transition: all 0.3s ease;
-       text-shadow: 1px 1px 2px var(--card-hover-bg-color);
-   
-       @media (max-width: 768px) {
-         font-size: 0.9rem;
-       }
-   
-       &:hover {
-         color: var(--button-bg-color);
-         transform: scale(1.1);
-       }
-     }
-   }
+body {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+  background-size: cover;
+  background-color: var(--background-color);
+  font-family: 'Rubik', Arial, sans-serif;
+  color: var(--text-color);
+  box-sizing: border-box;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.main-content {
+  flex: 1 0 auto;
+  margin-top: 300px;
+  @media (max-width: 768px) {
+    margin-top: 110px;
+  }
+}
+
+.site-footer {
+  flex-shrink: 0;
+  margin-top: 20px;
+  background: var(--primary-color);
+  color: var(--button-text-color);
+  padding: 1rem 0;
+  text-align: center;
+  position: relative;
+  &::after {
+    content: "";
+    display: block;
+    height: 5px;
+    background-color: var(--accent-color);
+  }
+}
+
+/* ---------------------------------------------------------
+   1) משתני CSS
+   --------------------------------------------------------- */
+:root {
+  --primary-color: #4A7C59; /* ירוק עמוק - מתאים לכותרות עיקריות */
+  --secondary-color: #68B0AB; /* כחול-ירקרק בינוני */
+  --accent-color: #8FCOA9; /* ירוק-כחול רך - להדגשות */
+  --background-color: #FAF3DD; /* רקע נייטרלי בהיר */
+  --text-color: #222; /* טקסט כהה לקריאה ברורה */
+  --button-bg-color: #5ead88; /* רקע כפתור */
+  --button-hover-bg-color: #4A7C59; /* צבע כהה יותר לריחוף */
+  --button-text-color: #FFFFFF; /* טקסט לבן על כפתורים */
+  --card-bg-color: #C8D5B9; /* רקע קלפים בגוון ירוק מעודן */
+  --card-hover-bg-color: #68B0AB; /* רקע כהה יותר בעת ריחוף */
+  --placeholder-bg-color: var(--secondary-color); /* גוון ירקרק עדין */
+  --placeholder-text-color: var(--text-color); /* טקסט כהה */
+  --row-stripe-even: #dee7eae2;
+  --row-stripe-odd: #93dae4bc;
+  --heading-stripe-odd: #68B0AB;
+  --heading-stripe-even: #f98810;
+  /*---------------צבעים שהם לדף הבית בלבד-----------------*/
+  --page-bg-color: #EDF2E0; /* רקע כללי לדף */
+  --category-bg-color: #d7efb6; /* רקע רגיל לקטגוריות */
+  --category-bg-alt: #D0DFC0; /* רקע שונה לכל קטגוריה שנייה */
+  --category-border-color: #B0C5A0; /* מסגרת לכל קטגוריה */
+  /* צבעים מיוחדים לנגישות */
+  --high-contrast-bg: #000000;
+  --high-contrast-text: #ffffff;
+  --high-contrast-link: #FFD700; /* זהב */
+  --high-contrast-btn: #444444;
+  --high-contrast-btn-hover: #666666;
+}
+
+/* ---------------------------------------------------------
+   2) כפתורים
+   --------------------------------------------------------- */
+/* ✅ כפתור נגישות */
+.accessibility-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+  z-index: 1000; /* כדי לוודא שהכפתור תמיד יהיה מעל האלמנטים האחרים */
+}
+
+.accessibility-button:hover {
+  background-color: #444;
+}
+
+/* ✅ מצב ניגודיות גבוהה */
+.high-contrast {
+  background-color: var(--high-contrast-bg) !important;
+  color: var(--high-contrast-text) !important;
+}
+
+/* ✅ שינוי צבעי טקסט */
+.high-contrast h1, 
+.high-contrast h2, 
+.high-contrast h3 {
+  color: var(--high-contrast-link) !important;
+}
+
+/* ✅ שינוי צבע קישורים */
+.high-contrast a {
+  color: var(--high-contrast-link) !important;
+  text-decoration: underline;
+}
+
+/* ✅ רקע כהה לכל העמודים */
+.high-contrast .category-page,
+.high-contrast .recipe-page,
+.high-contrast .main-content {
+  background-color: var(--high-contrast-bg) !important;
+  color: var(--high-contrast-text) !important;
+}
+
+/* ✅ שינוי רקע הקופסאות */
+.high-contrast .recipe-card,
+.high-contrast .category-card {
+  background-color: var(--high-contrast-btn) !important;
+  color: var(--high-contrast-text) !important;
+  border: 2px solid var(--high-contrast-link) !important;
+}
+
+/* ✅ שינוי רקע התפריט העליון */
+.high-contrast .site-header {
+  background-color: var(--high-contrast-bg) !important;
+  border-bottom: 3px solid var(--high-contrast-link) !important;
+}
+
+/* ✅ כפתורים */
+.high-contrast .btn {
+  background-color: var(--high-contrast-btn) !important;
+  color: var(--high-contrast-link) !important;
+}
+
+.high-contrast .btn:hover {
+  background-color: var(--high-contrast-btn-hover) !important;
+}
+
+/* ✅ התאמה לרצועות */
+.high-contrast .row-stripe-odd {
+  background-color: var(--high-contrast-btn) !important;
+}
+
+.high-contrast .row-stripe-even {
+  background-color: var(--high-contrast-btn-hover) !important;
+}
+
+/* ✅ כפתור נגישות */
+.high-contrast .accessibility-button {
+  background-color: var(--high-contrast-btn) !important;
+  color: var(--high-contrast-link) !important;
+}
+
+.high-contrast .accessibility-button:hover {
+  background-color: var(--high-contrast-btn-hover) !important;
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--button-bg-color); /* ירוק זית */
+  color: var(--button-text-color); /* לבן */
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--button-hover-bg-color); /* ירוק כהה יותר */
+  transform: translateY(-3px);
+}
+
+/* ---------------------------------------------------------
+   3) Header
+   --------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: url('/images/backgroundheader.jpg'); /* גרדיאנט ותמונה */
+  background-size: cover;
+  background-position: center;
+  color: var(--text-color); /* משתמש ב-:root */
+  padding: 1rem 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: none; /* ביטול קו תחתון גס */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צל עדין */
+}
+
+/* שכבת מעבר בין ה-Header לרקע */
+.site-header::after {
+  content: "";
+  position: absolute;
+  bottom: -20px; /* המרחק מהחלק התחתון של ה-header */
+  left: 0;
+  width: 100%;
+  height: 20px; /* גובה הקו המתשתש */
+  background: linear-gradient(to bottom, rgba(106, 142, 61, 0.3), rgba(46, 58, 36, 0));
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* התאמות למסכים קטנים */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 0.8rem 0; /* התאמת ריווח */
+  }
+
+  .site-header::after {
+    height: 10px; /* הקטנת גובה הקו המתשתש */
+    bottom: -10px; /* התאמה למסכים קטנים */
+  }
+}
+
+.site-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
+
+  img.logo-img {
+    max-height: 100px;
+    width: auto;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    @media (max-width: 768px) {
+      max-height: 60px;
+      margin-bottom: 0.3rem;
+    }
+  }
+}
+
+.site-nav {
+  ul {
+    list-style: none;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    flex-wrap: nowrap;
+
+    @media (max-width: 768px) {
+      gap: 0.8rem;
+      padding: 0.3rem 0.8rem;
+      overflow-x: auto;
+    }
+  }
+
+  a {
+    color: var(--button-text-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px var(--card-hover-bg-color);
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+
+    &:hover {
+      color: var(--button-bg-color);
+      transform: scale(1.1);
+    }
+  }
+}
 
 /***********************************************************
   1) דף המתכון (recipe-page)
@@ -261,7 +346,7 @@
 
 .recipe-header h1 {
   font-size: 3rem;
-  color: var(--tesxt-color);
+  color: var(--text-color);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 1rem;
@@ -318,7 +403,7 @@
   4) מצרכים והוראות (ingredients / instructions)
      - כותרת עם פס רקע
      - רווח גדול יותר בין כותרת לרשימה
-     - רשימה פסים צמודים
+     - רשימה עם פסים צמודים
 ************************************************************/
 
 /* "קונטיינר" פנימי שמאגד את הכותרת והרשימה לאותו רוחב */
@@ -365,8 +450,6 @@
   }
 }
 
-
-
 /* הרשימות עצמן */
 .ingredients ol,
 .instructions ol {
@@ -378,6 +461,7 @@
   /* נמתח לגמרי */
   width: 100%; 
 }
+
 /* כל שורה: בלי רווח בצדדים, פסים צמודים */
 .ingredients ol li,
 .instructions ol li {
@@ -396,7 +480,6 @@
     width: 95%;           /* במובייל – מצמצם לרוחב 95% */
   }
 }
-
 
 /* פסים לסירוגין */
 .ingredients ol li:nth-child(odd),
@@ -482,15 +565,66 @@
   }
 }
 
+/***********************************************************
+  מצב נגישות – High Contrast Mode
+************************************************************/
+/* התאמות לדף המתכון במצב ניגודיות גבוהה */
 
+.high-contrast .recipe-page {
+  background-color: var(--high-contrast-bg) !important;
+  color: var(--high-contrast-text) !important;
+  border: 2px solid var(--high-contrast-link) !important;
+}
 
-   /* ---------------------------------------------------------
-      5) פריסת קטגוריה
-      --------------------------------------------------------- */
-      
-      /* ---------------------------------------------------------
-   🎨 1) פריסת קטגוריה
---------------------------------------------------------- */
+.high-contrast .recipe-container {
+  background-color: var(--high-contrast-btn) !important;
+  color: var(--high-contrast-text) !important;
+  border: 2px solid var(--high-contrast-link) !important;
+}
+
+.high-contrast .recipe-header h1 {
+  color: var(--high-contrast-link) !important;
+}
+
+.high-contrast .recipe-meta {
+  background-color: var(--high-contrast-bg) !important;
+  border: 2px solid var(--high-contrast-link) !important;
+}
+
+.high-contrast .recipe-meta div {
+  background-color: var(--high-contrast-btn) !important;
+  color: var(--high-contrast-text) !important;
+  border: 2px solid var(--high-contrast-link) !important;
+}
+
+.high-contrast .ingredients h2,
+.high-contrast .instructions h2 {
+  background-color: var(--high-contrast-btn) !important;
+  color: var(--high-contrast-text) !important;
+}
+
+.high-contrast .ingredients ol li,
+.high-contrast .instructions ol li {
+  background-color: var(--high-contrast-bg) !important;
+  color: var(--high-contrast-text) !important;
+  border: 1px solid var(--high-contrast-link) !important;
+}
+
+.high-contrast .chef-tip {
+  background-color: var(--high-contrast-btn) !important;
+  color: var(--high-contrast-text) !important;
+  border: 2px solid var(--high-contrast-link) !important;
+}
+
+.high-contrast .recipe-actions .btn {
+  background-color: var(--high-contrast-btn) !important;
+  color: var(--high-contrast-link) !important;
+}
+
+/* ---------------------------------------------------------
+   5) פריסת קטגוריה
+   --------------------------------------------------------- */
+   
 .category-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -553,20 +687,18 @@
 /* ✅ התאמות מובייל */
 @media (max-width: 768px) {
   .category-page {
-      padding: 1rem;
+    padding: 1rem;
   }
 
   .category-page h1 {
-      font-size: 2rem;
-      padding: 0.8rem;
+    font-size: 2rem;
+    padding: 0.8rem;
   }
 
   .recipe-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 }
-
-
 
 /* ---------------------------------------------------------
    6) אנימציות
@@ -587,12 +719,9 @@
   }
 }
 
-   
-
 /* ---------------------------------------------------------
    8) עמוד "single" (למשל אודות)
    --------------------------------------------------------- */
-
 .single.about-page {
   max-width: 1000px;    /* ניתן לשנות ל-1200px אם רוצים */
   margin: 1rem auto 2rem;
@@ -677,25 +806,72 @@
   }
 }
 
-   /* ---------------------------------------------------------
-      9) מדיה קווריז נוספים
-      --------------------------------------------------------- */
-   @media (max-width: 480px) {
-     .site-nav ul {
-       gap: 0.5rem;
-       padding: 0.2rem 0.5rem;
-     }
-     
-     .site-nav a {
-       font-size: 0.85rem;
-     }
-     
-     .site-logo img.logo-img {
-       max-height: 50px;
-       padding: 3px;
-     }
-     
-     .recipe-page .recipe-header h1 {
-       font-size: 2.2rem;
-     }
-    }
+/* ---------------------------------------------------------
+   🎨 8) מצב ניגודיות גבוהה (High Contrast Mode)
+--------------------------------------------------------- */
+
+/* ✅ כפתורים במובייל */
+@media (max-width: 768px) {
+  .accessibility-button {
+    bottom: 15px;
+    left: 15px;
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+}
+
+/* ---------------------------------------------------------
+   9) מדיה קווריז נוספים
+--------------------------------------------------------- */
+@media (max-width: 768px) {
+  .accessibility-button {
+    bottom: 15px;
+    left: 15px;
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-nav ul {
+    gap: 0.5rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .site-nav a {
+    font-size: 0.85rem;
+  }
+
+  .site-logo img.logo-img {
+    max-height: 50px;
+    padding: 3px;
+  }
+
+  .recipe-page .recipe-header h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   הוספות לנגישות
+--------------------------------------------------------- */
+
+/* הגדלת טקסט במצב 'large-text' */
+body.large-text {
+  font-size: 1.3rem !important;
+}
+
+/* התאמת קופסת טיפ מהשף במצב ניגודיות גבוהה */
+.high-contrast .chef-tip {
+  background-color: var(--high-contrast-btn) !important;
+  color: var(--high-contrast-text) !important;
+  border: 2px solid var(--high-contrast-link) !important;
+}
+
+/* התאמת קופסת אודות במצב ניגודיות גבוהה */
+.high-contrast .single.about-page {
+  background-color: var(--high-contrast-btn) !important;
+  color: var(--high-contrast-text) !important;
+  border: 2px solid var(--high-contrast-link) !important;
+}
+
