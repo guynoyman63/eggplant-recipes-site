@@ -3,188 +3,139 @@ layout: default
 ---
 
 <div class="category-page">
-  <!-- כותרת דף הקטגוריה -->
-  <h1>{{ page.title }}</h1>
-  
-  {%- comment -%}
-  סינון מתכונים מתוך site.data.recipes לפי הערך של page.category,
-  מציגים רק 4 מתכונים ראשונים.
-  {%- endcomment -%}
-  {% assign recipes = site.data.recipes | where: "category", page.category | slice: 0,4 %}
-  
-  {% if recipes.size > 0 %}
+    <h1>{{ page.title }}</h1>
+
     <div class="recipe-grid">
-      {% for recipe in recipes %}
-      <div class="recipe-card">
-        <a href="/recipes/{{ recipe.id }}/">
-          <img src="{{ recipe.image | default: '/images/placeholder.jpg' | relative_url }}" alt="{{ recipe.title }}">
-        </a>
-        <div class="recipe-info">
-          <h2>{{ recipe.title }}</h2>
-          <p>{{ recipe.description | default: "תיאור קצר לא זמין" }}</p>
-          <a href="/recipes/{{ recipe.id }}/" class="view-recipe-btn">צפייה במתכון</a>
-        </div>
-      </div>
-      {% endfor %}
+        {% assign recipes = site.data.recipes | where: "category", page.category %}
+        {% if recipes.size > 0 %}
+            {% for recipe in recipes %}
+            <div class="recipe-card">
+                <a href="/recipes/{{ recipe.id }}/">
+                    <img src="{{ recipe.image | default: '/images/placeholder.jpg' | relative_url }}" 
+                         alt="{{ recipe.title }}">
+                    <div class="recipe-info">
+                        <h2>{{ recipe.title }}</h2>
+                        <p>{{ recipe.description | default: "אין תיאור זמין למתכון זה." }}</p>
+                        <a href="/recipes/{{ recipe.id }}/" class="view-recipe-btn">לצפייה במתכון</a>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>לא נמצאו מתכונים בקטגוריה זו.</p>
+        {% endif %}
     </div>
-  {% else %}
-    <p>לא נמצאו מתכונים בקטגוריה זו.</p>
-  {% endif %}
-  
-  <a href="/" class="back-button">חזרה לדף הבית</a>
+
+    <a href="/" class="back-button">חזרה לדף הבית</a>
 </div>
 
 <style>
-/* -------------------------------
-   עיצוב דף הקטגוריה
-------------------------------- */
-.category-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  background-color: var(--page-bg-color);
-  border-radius: 8px;
-}
-
-/* כותרת הקטגוריה – דומה לכותרת דף הבית */
-.category-page h1 {
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  background-color: var(--page-bg-color);
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-/* Grid להצגת 4 קופסאות במצב מחשב (2 על 2) */
+/* ✅ רשת מתכונים בקטגוריה */
 .recipe-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-/* כרטיס מתכון עם אפקט hover */
+/* ✅ כרטיס מתכון עם עיצוב נקי */
 .recipe-card {
-  background-color: var(--category-bg-color);
-  border: 2px solid var(--category-border-color);
-  border-radius: 8px;
-  padding: 1rem;
-  box-sizing: border-box;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--category-bg-color);
+    border: 2px solid var(--category-border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .recipe-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
-/* החלפת צבע עבור קופסאות זוגיות */
+/* ✅ כל כרטיס מתכון זוגי יקבל צבע רקע שונה */
 .recipe-card:nth-child(even) {
-  background-color: var(--category-bg-alt);
+    background-color: var(--category-bg-alt);
 }
 
-/* קישור שמעטפת את התמונה */
-.recipe-card a {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-/* תמונת המתכון – יחס 4:3, מעוגלת, אפקט hover */
+/* ✅ תמונת המתכון */
 .recipe-card img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  transition: transform 0.3s ease;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
 }
 
 .recipe-card img:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
-/* מידע המתכון – כותרת, תאור קצר וכפתור צפייה */
+/* ✅ מידע על המתכון */
 .recipe-info {
-  text-align: center;
-  padding: 0 0.5rem;
+    text-align: center;
+    padding: 0.5rem;
 }
 
 .recipe-info h2 {
-  font-size: 1.8rem;
-  margin: 0.5rem 0;
+    font-size: 1.8rem;
+    margin: 0.5rem 0;
 }
 
-/* תאור קצר עם קיצוץ – 3 שורות במצב מחשב */
 .recipe-info p {
-  font-size: 1.2rem;
-  color: var(--text-color);
-  margin: 0.5rem 0;
-  max-height: 4.5em; /* מתאים בערך ל-3 שורות */
-  line-height: 1.5em; /* גובה שורה קבוע */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-
-/* כפתור צפייה במתכון */
-.view-recipe-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.6rem 1rem;
-  background-color: var(--button-bg-color);
-  color: var(--button-text-color);
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.view-recipe-btn:hover {
-  background-color: var(--button-hover-bg-color);
-}
-
-/* כפתור חזרה לדף הבית */
-.back-button {
-  display: inline-block;
-  margin-top: 2rem;
-  padding: 0.8rem 1.2rem;
-  background-color: var(--button-bg-color);
-  color: var(--button-text-color);
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.back-button:hover {
-  background-color: var(--button-hover-bg-color);
-}
-
-/* -------------------------------
-   עיצוב במצב מובייל
-------------------------------- */
-@media (max-width: 768px) {
-  .recipe-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .category-page h1 {
-    font-size: 2rem;
-    padding: 0.8rem;
-  }
-
-  /* פתרון שמתאים לכל הדפדפנים */
-  .recipe-info p {
-    max-height: 3em; /* מגביל לגובה של 2 שורות */
-    line-height: 1.5em; /* גובה שורה */
+    font-size: 1.2rem;
+    color: var(--text-color);
+    max-height: 4.5em;
+    line-height: 1.5em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
 }
 
+/* ✅ כפתור לצפייה במתכון */
+.view-recipe-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.view-recipe-btn:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+/* ✅ כפתור חזרה */
+.back-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.8rem 1.2rem;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+/* ✅ התאמות מובייל */
+@media (max-width: 768px) {
+    .recipe-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .recipe-info p {
+        max-height: 3em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
 </style>
