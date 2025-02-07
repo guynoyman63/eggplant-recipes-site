@@ -2,190 +2,38 @@
   name: מנות קרות וסלטים
   description: סלטים קרירים ומנות קלילות עם חצילים
   image: /images/categories/cold-dishes.jpg
-  subcategories:
-    - id: salad-types
-      name: סוגי סלטים
-      description: סלטים קלילים ומהירים
-      image: /images/subcategories/salad-types.jpg
-      recipes:
-        - id: tahini-eggplant
-          name: סלט טחינה וחציל
-        - id: eggplant-pomegranate
-          name: חציל ורימונים
-    - id: special-salads
-      name: סלטים מיוחדים
-      description: סלטים יצירתיים וטעימים
-      image: /images/subcategories/special-salads.jpg
-      recipes:
-        - id: smoked-salads
-          name: סלטים מעושנים
-        - id: gourmet-salads
-          name: סלטי גורמה
 
 - id: hot-dishes
   name: מנות חמות ועיקריות
   description: מנות חמות ועיקריות עם חצילים
   image: /images/categories/hot-dishes.jpg
-  subcategories:
-    - id: stuffed-meat
-      name: ממולאים ובשר
-      description: חצילים ממולאים בבשר
-      image: /images/subcategories/stuffed-meat.jpg
-      recipes:
-        - id: meat-tomato
-          name: חצילים בבשר ועגבניות
-        - id: legumes
-          name: חצילים עם קטניות
-    - id: stews
-      name: תבשילים
-      description: תבשילים חמים וטעימים
-      image: /images/subcategories/stews.jpg
-      recipes:
-        - id: festive-stews
-          name: תבשילים חגיגיים
-        - id: quick-recipes
-          name: מתכונים מהירים ופשוטים
 
 - id: baked-dishes
   name: מנות אפויות
   description: חצילים אפויים ומאפים טעימים
   image: /images/categories/baked-dishes.jpg
-  subcategories:
-    - id: savory-bakes
-      name: אפויים מלוחים
-      description: מאפים מלוחים
-      image: /images/subcategories/savory-bakes.jpg
-      recipes:
-        - id: eggplant-pie
-          name: פאי חצילים
-        - id: stuffed-eggplant
-          name: חציל ממולא בתנור
-    - id: sweet-bakes
-      name: אפויים מתוקים
-      description: קינוחים ומאפים מתוקים
-      image: /images/subcategories/sweet-bakes.jpg
-      recipes:
-        - id: eggplant-cake
-          name: עוגת חצילים
-        - id: eggplant-dessert
-          name: קינוח חצילים
 
 - id: grilled-dishes
   name: מנות צלויות
   description: חצילים צלויים בטעמים מעושנים
   image: /images/categories/grilled-dishes.jpg
-  subcategories:
-    - id: classic-grill
-      name: חציל על האש קלאסי
-      description: חצילים על האש בטעמים מסורתיים
-      image: /images/subcategories/classic-grill.jpg
-      recipes:
-        - id: grilled-eggplant-tahini
-          name: חציל עם טחינה
-        - id: grilled-eggplant-chili
-          name: חציל עם צ'ילי
-    - id: creative-grill
-      name: צלייה יצירתית
-      description: מתכונים יצירתיים לצלייה
-      image: /images/subcategories/creative-grill.jpg
-      recipes:
-        - id: eggplant-burger
-          name: המבורגר חצילים
-        - id: eggplant-steaks
-          name: סטייקי חציל
 
 - id: dips-and-spreads
   name: ממרחים ומטבלים
   description: ממרחים טעימים על בסיס חצילים
   image: /images/categories/dips-and-spreads.jpg
-  subcategories:
-    - id: classic-dips
-      name: ממרחים קלאסיים
-      description: מתכונים מסורתיים לממרחים
-      image: /images/subcategories/classic-dips.jpg
-      recipes:
-        - id: eggplant-baba-ganoush
-          name: באבא גנוש
-        - id: eggplant-hummus
-          name: חומוס עם חציל
-    - id: creative-spreads
-      name: מטבלים יצירתיים
-      description: מתכונים יצירתיים ומגוונים
-      image: /images/subcategories/creative-spreads.jpg
-      recipes:
-        - id: eggplant-spread-tomato
-          name: ממרח חצילים ועגבניות
-        - id: eggplant-spread-pepper
-          name: ממרח חצילים ופלפלים
 
 - id: quick-dishes
   name: מנות מהירות
   description: מנות חצילים מהירות להכנה
   image: /images/categories/quick-dishes.jpg
-  subcategories:
-    - id: 15-minutes
-      name: מנות ב-15 דקות
-      description: מנות מהירות וקלות להכנה
-      image: /images/subcategories/15-minutes.jpg
-      recipes:
-        - id: quick-salad
-          name: סלט מהיר עם חצילים
-        - id: quick-stir-fry
-          name: הקפצה מהירה עם חצילים
-    - id: microwave-recipes
-      name: מתכוני מיקרוגל
-      description: מנות חצילים במיקרוגל
-      image: /images/subcategories/microwave-recipes.jpg
-      recipes:
-        - id: microwave-eggplant
-          name: חציל במיקרוגל
-        - id: microwave-stew
-          name: תבשיל מהיר במיקרוגל
 
 - id: gourmet-dishes
   name: מנות גורמה
   description: מנות שף יצירתיות עם חצילים
   image: /images/categories/gourmet-dishes.jpg
-  subcategories:
-    - id: chef-special
-      name: מנות שף מיוחדות
-      description: מנות חצילים מיוחדות לשפים
-      image: /images/subcategories/chef-special.jpg
-      recipes:
-        - id: eggplant-carpaccio
-          name: קרפצ'יו חציל
-        - id: eggplant-ratatouille
-          name: רטטוי חציל
-    - id: fancy-desserts
-      name: קינוחים יוקרתיים
-      description: קינוחים מתקדמים עם חצילים
-      image: /images/subcategories/fancy-desserts.jpg
-      recipes:
-        - id: eggplant-chocolate
-          name: שוקולד חצילים
-        - id: eggplant-ice-cream
-          name: גלידת חצילים
 
 - id: vegan-dishes
   name: מנות טבעוניות
   description: מנות חצילים טבעוניות וטעימות
   image: /images/categories/vegan-dishes.jpg
-  subcategories:
-    - id: hearty-vegan
-      name: מנות טבעוניות מזינות
-      description: מתכונים טבעוניים טעימים
-      image: /images/subcategories/hearty-vegan.jpg
-      recipes:
-        - id: vegan-curry
-          name: קארי טבעוני עם חצילים
-        - id: vegan-lasagna
-          name: לזניית חצילים טבעונית
-    - id: simple-vegan
-      name: מנות טבעוניות פשוטות
-      description: מנות טבעוניות מהירות
-      image: /images/subcategories/simple-vegan.jpg
-      recipes:
-        - id: vegan-stir-fry
-          name: הקפצת ירקות טבעונית
-        - id: vegan-bowl
-          name: קערת חצילים טבעונית
