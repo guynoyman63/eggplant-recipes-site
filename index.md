@@ -102,14 +102,17 @@ permalink: /
 </div>
 
 <style>
-/* הגדרת משתנים לעיצוב */
-:root {
-    --page-bg-color: #EDF2E0; /* רקע כללי לדף */
-    --category-bg-color: #d7efb6; /* רקע רגיל לקטגוריות */
-    --category-bg-alt: #D0DFC0; /* רקע שונה לכל קטגוריה שנייה */
-    --category-border-color: #B0C5A0; /* מסגרת לכל קטגוריה */
+    /* מוודא שכל הקישורים בדף הבית יופיעו בצבע הטקסט הרגיל */
+.category-page a, 
+.category-page a:visited {
+    color: var(--text-color);
 }
 
+.category-page a:hover, 
+.category-page a:focus {
+    color: var(--accent-color);
+}
+/* הגדרת משתנים לעיצוב *
 /* עיצוב כללי */
 .category-page {
     max-width: 90vw;
@@ -181,6 +184,19 @@ permalink: /
     text-decoration: none;
     border-radius: 8px;
 }
+    /* תיקון צבעי קישורים במובייל */
+@media (max-width: 768px) {
+    .mobile-carousel a, 
+    .mobile-carousel a:visited {
+        color: var(--text-color) !important;
+    }
+
+    .mobile-carousel a:hover, 
+    .mobile-carousel a:focus {
+        color: var(--accent-color) !important;
+    }
+}
+
 
 /* עיצוב למובייל */
 .mobile-carousel {
