@@ -1,51 +1,112 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    {% include head.html %}
+  {% include head.html %}
+  <style>
+    /* קונטיינר הכפתורים – מוצב בפינה השמאלית התחתונה */
+    .fixed-buttons {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      gap: 10px; /* רווח קטן בין הכפתורים */
+      z-index: 1000;
+    }
+    /* נעביר את סגנונות הכפתורים כדי לעקוף את ההגדרות מה־main.scss */
+    .fixed-buttons .accessibility-button,
+    .fixed-buttons .tts-button {
+      background-color: #000;
+      color: #fff;
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+      /* חשוב: לבטל כל הגדרת position שהגיעה מה־SCSS */
+      position: static !important;
+    }
+    .fixed-buttons .accessibility-button:hover,
+    .fixed-buttons .tts-button:hover {
+      background-color: #444;
+    }
+    /* התאמה למובייל */
+    @media (max-width: 768px) {
+      .fixed-buttons {
+        bottom: 15px;
+        left: 15px;
+        gap: 8px;
+      }
+      .fixed-buttons .accessibility-button,
+      .fixed-buttons .tts-button {
+        font-size: 1rem;
+        padding: 8px 12px;
+      }
+    }
+  </style>
 </head>
-<body class="layout-body"> <!-- מאפשר Flexbox בגוף העמוד -->
-    
-    <header class="site-header">
-        {% include header.html %}
-    </header>
-
-    <main class="main-content">
-        {{ content }}
-    </main>
-
-    <footer class="site-footer">
-        {% include footer.html %}
-    </footer>
-
-    <!-- כפתור נגישות -->
+<body class="layout-body">
+  <header class="site-header">
+    {% include header.html %}
+  </header>
+  
+  <main class="main-content">
+    {{ content }}
+  </main>
+  
+  <footer class="site-footer">
+    {% include footer.html %}
+  </footer>
+  
+  <!-- קונטיינר לכפתורים הקבועים: נגישות ודיבור הטקסט -->
+  <div class="fixed-buttons">
     <button id="accessibility-btn" onclick="toggleAccessibility()" class="accessibility-button">
-        🦾 נגישות
+      🦾 נגישות
     </button>
+    <button id="tts-btn" onclick="speakPageText()" class="tts-button">
+      🔊 דיבור הטקסט
+    </button>
+  </div>
+  
+  <script>
+    // ביטול הדיבור בעת מעבר דף – כדי שלא ממשיכים להקריא את הדף הקודם
+    window.onbeforeunload = function() {
+      window.speechSynthesis.cancel();
+    };
 
-    <!-- סקריפט לנגישות -->
-    <script>
-        function toggleAccessibility() {
-            document.body.classList.toggle("high-contrast");
-            document.body.classList.toggle("large-text");
+    // פונקציה למתג מצב נגישות – מוסיפה/מסירה מחלקות ושומרת בהגדרות בלוקאל סטוראג'
+    function toggleAccessibility() {
+      document.body.classList.toggle("high-contrast");
+      document.body.classList.toggle("large-text");
+      
+      localStorage.setItem("highContrast", document.body.classList.contains("high-contrast"));
+      localStorage.setItem("largeText", document.body.classList.contains("large-text"));
+    }
 
-            // שמירת ההגדרה בלוקאלי כדי להפעיל גם בדפים אחרים
-            let isHighContrast = document.body.classList.contains("high-contrast");
-            let isLargeText = document.body.classList.contains("large-text");
+    // פונקציה לקריאת טקסט מהדף
+    function speakPageText() {
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        return;
+      }
+      const fullText = document.body.innerText;
+      if (!fullText) return;
+      const utterance = new SpeechSynthesisUtterance(fullText);
+      utterance.lang = 'he-IL'; // הגדרת השפה לעברית
+      window.speechSynthesis.speak(utterance);
+    }
 
-            localStorage.setItem("highContrast", isHighContrast);
-            localStorage.setItem("largeText", isLargeText);
-        }
-
-        // טעינת מצב הנגישות אם הופעל בעבר
-        window.onload = function() {
-            if (localStorage.getItem("highContrast") === "true") {
-                document.body.classList.add("high-contrast");
-            }
-            if (localStorage.getItem("largeText") === "true") {
-                document.body.classList.add("large-text");
-            }
-        };
-    </script>
-
+    // בעת טעינת הדף – שחזור הגדרות הנגישות וביצוע קריאה אוטומטית (לאחר 500ms)
+    window.onload = function() {
+      if (localStorage.getItem("highContrast") === "true") {
+        document.body.classList.add("high-contrast");
+      }
+      if (localStorage.getItem("largeText") === "true") {
+        document.body.classList.add("large-text");
+      }
+      setTimeout(speakPageText, 500);
+    };
+  </script>
 </body>
 </html>
