@@ -56,7 +56,7 @@ permalink: /
     {% for category in site.data.categories %}
     <div class="carousel-item">
         <div class="carousel-category-box">
-            <!-- קישור לתצוגת קטגוריה עם תמונה וכותרת (לחיצה על התמונה או הכותרת מובילה לדף הקטגוריה) -->
+            <!-- קישור לתצוגת קטגוריה עם תמונה וכותרת -->
             <a href="/categories/{{ category.id }}/" class="category-link">
                 <div class="image-container">
                     <img src="/images/categories/{{ category.id }}.jpg" 
@@ -92,7 +92,7 @@ permalink: /
                 {% endif %}
             </div>
 
-            <!-- תיאור קטגוריה (המלל שהיה מתחת לכותרת) -->
+            <!-- תיאור קטגוריה -->
             {% if category.description %}
             <p class="category-description">{{ category.description }}</p>
             {% endif %}
@@ -102,17 +102,20 @@ permalink: /
 </div>
 
 <style>
-    /* מוודא שכל הקישורים בדף הבית יופיעו בצבע הטקסט הרגיל */
+/* ------------------------- */
+/* עיצוב כללי לדף הבית */
+/* ------------------------- */
+
+/* הגדרת צבעי קישורים */
 .category-page a, 
 .category-page a:visited {
     color: var(--text-color);
 }
-
 .category-page a:hover, 
 .category-page a:focus {
     color: var(--accent-color);
 }
-/* הגדרת משתנים לעיצוב *
+
 /* עיצוב כללי */
 .category-page {
     max-width: 90vw;
@@ -128,7 +131,6 @@ permalink: /
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
 }
-
 .category-card {
     background-color: var(--category-bg-color);
     border-radius: 12px;
@@ -136,45 +138,37 @@ permalink: /
     border: 2px solid var(--category-border-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 .category-card:nth-child(odd) {
     background-color: var(--category-bg-alt);
 }
-
 .recipe-preview-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-bottom: 15px;
 }
-
 .recipe-item {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
 }
-
 .recipe-thumbnail {
     width: 100%;
     height: 120px;
     object-fit: cover;
     transition: transform 0.3s;
-    border-radius: 12px; /* מעגלת את כל הפינות */
+    border-radius: 12px;
 }
-
 .recipe-item:hover .recipe-thumbnail {
     transform: scale(1.05);
 }
-
 /* תוכן קטגוריה */
 .category-content h2 {
     margin-top: 0;
 }
-
 .category-content p {
     margin: 0.5rem 0;
 }
-
 .btn {
     display: inline-block;
     margin-top: 10px;
@@ -184,35 +178,30 @@ permalink: /
     text-decoration: none;
     border-radius: 8px;
 }
-    /* תיקון צבעי קישורים במובייל */
+
+/* עיצוב למובייל */
 @media (max-width: 768px) {
     .mobile-carousel a, 
     .mobile-carousel a:visited {
         color: var(--text-color) !important;
     }
-
     .mobile-carousel a:hover, 
     .mobile-carousel a:focus {
         color: var(--accent-color) !important;
     }
 }
-
-
-/* עיצוב למובייל */
 .mobile-carousel {
     display: none;
     overflow-x: auto;
     padding: 0 2%;
     -webkit-overflow-scrolling: touch;
 }
-
 .carousel-item {
     display: inline-block;
     width: 95%;
-    margin: 0 2% 30px 2%; /* רווח גדול בין כל קטגוריה */
+    margin: 0 2% 30px 2%;
     vertical-align: top;
 }
-
 .carousel-category-box {
     background-color: var(--category-bg-color);
     border: 2px solid var(--category-border-color);
@@ -220,21 +209,17 @@ permalink: /
     padding: 15px;
     box-sizing: border-box;
 }
-
-/* עיגול מלא של תמונת הקטגוריה */
 .image-container {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
 }
-
 .category-image-mobile {
     width: 100%;
     height: 150px;
     object-fit: cover;
     display: block;
 }
-
 .category-title-overlay {
     position: absolute;
     bottom: 0;
@@ -245,14 +230,11 @@ permalink: /
     text-align: center;
     padding: 5px 0;
 }
-
 .category-title-overlay h3 {
     margin: 0;
     font-size: 1.2rem;
     text-align: center;
 }
-
-/* עיצוב לקרוסלת מתכונים במובייל */
 .carousel-recipes {
     display: flex;
     gap: 10px;
@@ -260,29 +242,24 @@ permalink: /
     padding-bottom: 10px;
     margin-top: 10px;
 }
-
 .carousel-recipe-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100px;
 }
-
 .carousel-recipe-item img {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: 12px;
 }
-
 .carousel-recipe-title {
     display: block;
     margin-top: 5px;
     font-size: 0.9rem;
     text-align: center;
 }
-
-/* תיאור קטגוריה במובייל */
 .category-description {
     margin-top: 10px;
     font-size: 0.95rem;
@@ -300,26 +277,76 @@ permalink: /
     .btn { 
         display: none; 
     }
-    
-    /* ניתוק הרקע של הכותרת מה-header ושמירה על גודלה המקורי */
     .category-page {
         padding: 0.5rem 2%;
-        margin: 30px auto 30px auto; /* מרווח חיצוני גדול יותר מה-header */
+        margin: 30px auto 30px auto;
     }
     .category-page h1 { 
         font-size: 2rem;
         line-height: 1.2;
-        margin: 20px 0 30px 0; /* רווח מעל ומתחת – כך נוצר ניתוק מה-header */
+        margin: 20px 0 30px 0;
         text-align: center;
-        /* מבטלים את העיצוב של רקע, padding ו-border-radius כך שהכותרת תישאר בגודלה המקורי */
         background: none;
         padding: 0;
         border-radius: 0;
     }
-    
-    /* החלפת צבע בין קטגוריות זוגיות ואי זוגיות */
     .mobile-carousel .carousel-item:nth-child(odd) .carousel-category-box {
         background-color: var(--category-bg-alt);
+    }
+}
+
+/* ------------------------------ */
+/* High Contrast Overrides for Accessibility */
+/* (These rules will apply when the body has the .high-contrast class) */
+.high-contrast .category-page {
+    background-color: var(--high-contrast-bg) !important;
+    color: var(--high-contrast-text) !important;
+    border: 2px solid var(--high-contrast-link) !important;
+}
+.high-contrast .category-card {
+    background-color: var(--high-contrast-btn) !important;
+    border: 2px solid var(--high-contrast-link) !important;
+    color: var(--high-contrast-text) !important;
+}
+.high-contrast .btn {
+    background-color: var(--high-contrast-btn) !important;
+    color: var(--high-contrast-link) !important;
+}
+.high-contrast .mobile-carousel {
+    background-color: var(--high-contrast-bg) !important;
+    color: var(--high-contrast-text) !important;
+}
+.high-contrast .carousel-category-box {
+    background-color: var(--high-contrast-btn) !important;
+    border: 2px solid var(--high-contrast-link) !important;
+    color: var(--high-contrast-text) !important;
+}
+.high-contrast .carousel-recipe-item img {
+    border: 2px solid var(--high-contrast-link) !important;
+}
+.high-contrast .carousel-recipe-title {
+    color: var(--high-contrast-text) !important;
+}
+.high-contrast .category-content h2,
+.high-contrast .category-content p {
+    color: var(--high-contrast-text) !important;
+}
+.high-contrast .category-description {
+    color: var(--high-contrast-text) !important;
+}
+
+/* High Contrast Overrides for Mobile (within media query) */
+@media (max-width: 768px) {
+    .high-contrast .mobile-carousel {
+        background-color: var(--high-contrast-bg) !important;
+        color: var(--high-contrast-text) !important;
+    }
+    .high-contrast .carousel-category-box {
+        background-color: var(--high-contrast-btn) !important;
+        border: 2px solid var(--high-contrast-link) !important;
+    }
+    .high-contrast .category-page h1 {
+        color: var(--high-contrast-link) !important;
     }
 }
 </style>
