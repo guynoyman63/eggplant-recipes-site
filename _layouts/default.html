@@ -3,7 +3,7 @@
 <head>
   {% include head.html %}
   <style>
-    /* קונטיינר הכפתורים – מוצב בפינה השמאלית התחתונה */
+    /* קונטיינר לכפתורים – מוצב בפינה השמאלית התחתונה */
     .fixed-buttons {
       position: fixed;
       bottom: 20px;
@@ -12,7 +12,7 @@
       gap: 10px; /* רווח קטן בין הכפתורים */
       z-index: 1000;
     }
-    /* נעביר את סגנונות הכפתורים כדי לעקוף את ההגדרות מה־main.scss */
+    /* סגנון אחיד לשני הכפתורים – מוודא שאין השפעות חיצוניות מה־SCSS */
     .fixed-buttons .accessibility-button,
     .fixed-buttons .tts-button {
       background-color: #000;
@@ -24,7 +24,7 @@
       cursor: pointer;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       transition: background 0.3s ease;
-      /* חשוב: לבטל כל הגדרת position שהגיעה מה־SCSS */
+      /* מבטלים הגדרות מיקום שעלולות להגיע ממקומות אחרים */
       position: static !important;
     }
     .fixed-buttons .accessibility-button:hover,
@@ -50,54 +50,96 @@
   <header class="site-header">
     {% include header.html %}
   </header>
-  
+
   <main class="main-content">
     {{ content }}
   </main>
-  
+
   <footer class="site-footer">
     {% include footer.html %}
   </footer>
-  
-  <!-- קונטיינר לכפתורים הקבועים: נגישות ודיבור הטקסט -->
+
+  <!-- קונטיינר לכפתורים הקבועים: כפתור נגישות וכפתור דיבור הטקסט -->
   <div class="fixed-buttons">
     <button id="accessibility-btn" onclick="toggleAccessibility()" class="accessibility-button">
       🦾 נגישות
     </button>
-    <button id="tts-btn" onclick="speakPageText()" class="tts-button">
+    <button id="tts-btn" onclick="toggleSpeechMode()" class="tts-button">
       🔊 דיבור הטקסט
     </button>
   </div>
-  
+
   <script>
-    // ביטול הדיבור בעת מעבר דף – כדי שלא ממשיכים להקריא את הדף הקודם
+    // ביטול דיבור בעת מעבר דף כדי למנוע קריאה ממשיכה
     window.onbeforeunload = function() {
       window.speechSynthesis.cancel();
     };
 
-    // פונקציה למתג מצב נגישות – מוסיפה/מסירה מחלקות ושומרת בהגדרות בלוקאל סטוראג'
+    // Toggle מצב נגישות – ללא שינוי כאן (כפי שהייתם משתמשים בו כבר)
     function toggleAccessibility() {
       document.body.classList.toggle("high-contrast");
       document.body.classList.toggle("large-text");
-      
       localStorage.setItem("highContrast", document.body.classList.contains("high-contrast"));
       localStorage.setItem("largeText", document.body.classList.contains("large-text"));
     }
 
+    // Toggle למצב דיבור (Speech Mode)
+    function toggleSpeechMode() {
+      if (localStorage.getItem("speechModeActive") === "true") {
+        // כיבוי מצב דיבור
+        localStorage.setItem("speechModeActive", "false");
+        window.speechSynthesis.cancel();
+      } else {
+        // הפעלת מצב דיבור והפעלת קריאה
+        localStorage.setItem("speechModeActive", "true");
+        speakPageText();
+      }
+    }
+
     // פונקציה לקריאת טקסט מהדף
     function speakPageText() {
+      // אם מצב דיבור לא פעיל – אין להתחיל קריאה
+      if (localStorage.getItem("speechModeActive") !== "true") return;
+      // אם כבר מתבצע דיבור, ביטול והפעלת קריאה מחדש
       if (window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
-        return;
       }
-      const fullText = document.body.innerText;
+
+      let fullText = "";
+      // אם מדובר בדף מתכון (כתובת כוללת "/recipes/")
+      if (window.location.pathname.indexOf('/recipes/') > -1) {
+        const articleElem = document.querySelector('article.recipe-container');
+        if (articleElem) {
+          // אם זה הפעם הראשונה בדף זה – קרא את כל התוכן (כולל ה־header של המתכון)
+          if (!sessionStorage.getItem("headerRead")) {
+            fullText = articleElem.innerText;
+            sessionStorage.setItem("headerRead", "true");
+          } else {
+            // בפעמים הבאות – נסה להסיר את החלק של .recipe-header מהעותק
+            let cloneArticle = articleElem.cloneNode(true);
+            let headerElem = cloneArticle.querySelector(".recipe-header");
+            if (headerElem) headerElem.remove();
+            fullText = cloneArticle.innerText;
+          }
+        }
+      } else {
+        // בדפים אחרים – אם לא נקרא header כבר, קרא את כל הדף, אחרת רק את main
+        if (!sessionStorage.getItem("headerRead")) {
+          fullText = document.body.innerText;
+          sessionStorage.setItem("headerRead", "true");
+        } else {
+          const mainEl = document.querySelector("main.main-content");
+          fullText = mainEl ? mainEl.innerText : document.body.innerText;
+        }
+      }
+      
       if (!fullText) return;
       const utterance = new SpeechSynthesisUtterance(fullText);
-      utterance.lang = 'he-IL'; // הגדרת השפה לעברית
+      utterance.lang = "he-IL";
       window.speechSynthesis.speak(utterance);
     }
 
-    // בעת טעינת הדף – שחזור הגדרות הנגישות וביצוע קריאה אוטומטית (לאחר 500ms)
+    // בעת טעינת הדף – שחזור הגדרות נגישות ובדיקה של מצב דיבור:
     window.onload = function() {
       if (localStorage.getItem("highContrast") === "true") {
         document.body.classList.add("high-contrast");
@@ -105,7 +147,11 @@
       if (localStorage.getItem("largeText") === "true") {
         document.body.classList.add("large-text");
       }
-      setTimeout(speakPageText, 500);
+      // אם מצב דיבור פעיל, ביטול קריאה קודמת והפעלת קריאה בדף החדש
+      if (localStorage.getItem("speechModeActive") === "true") {
+        window.speechSynthesis.cancel();
+        speakPageText();
+      }
     };
   </script>
 </body>
