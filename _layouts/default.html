@@ -12,7 +12,7 @@
       gap: 10px; /* רווח קטן בין הכפתורים */
       z-index: 1000;
     }
-    /* סגנון אחיד לשני הכפתורים – מוודא שאין השפעות חיצוניות מה־SCSS */
+    /* סגנון אחיד לשני הכפתורים – מוודא שאין השפעות חיצוניות */
     .fixed-buttons .accessibility-button,
     .fixed-buttons .tts-button {
       background-color: #000;
@@ -24,7 +24,6 @@
       cursor: pointer;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       transition: background 0.3s ease;
-      /* מבטלים הגדרות מיקום שעלולות להגיע ממקומות אחרים */
       position: static !important;
     }
     .fixed-buttons .accessibility-button:hover,
@@ -75,7 +74,7 @@
       window.speechSynthesis.cancel();
     };
 
-    // Toggle מצב נגישות – ללא שינוי כאן (כפי שהייתם משתמשים בו כבר)
+    // פונקציה למתג מצב נגישות – ללא שינוי
     function toggleAccessibility() {
       document.body.classList.toggle("high-contrast");
       document.body.classList.toggle("large-text");
@@ -86,11 +85,9 @@
     // Toggle למצב דיבור (Speech Mode)
     function toggleSpeechMode() {
       if (localStorage.getItem("speechModeActive") === "true") {
-        // כיבוי מצב דיבור
         localStorage.setItem("speechModeActive", "false");
         window.speechSynthesis.cancel();
       } else {
-        // הפעלת מצב דיבור והפעלת קריאה
         localStorage.setItem("speechModeActive", "true");
         speakPageText();
       }
@@ -98,44 +95,36 @@
 
     // פונקציה לקריאת טקסט מהדף
     function speakPageText() {
-      // אם מצב דיבור לא פעיל – אין להתחיל קריאה
+      // אם מצב דיבור אינו פעיל, לא לעשות דבר
       if (localStorage.getItem("speechModeActive") !== "true") return;
       // אם כבר מתבצע דיבור, ביטול והפעלת קריאה מחדש
       if (window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
       }
-
+      
       let fullText = "";
-      // אם מדובר בדף מתכון (כתובת כוללת "/recipes/")
+      
+      // אם מדובר בדף מתכון (כתובת המכילה "/recipes/")
       if (window.location.pathname.indexOf('/recipes/') > -1) {
         const articleElem = document.querySelector('article.recipe-container');
         if (articleElem) {
-          // אם זה הפעם הראשונה בדף זה – קרא את כל התוכן (כולל ה־header של המתכון)
-          if (!sessionStorage.getItem("headerRead")) {
-            fullText = articleElem.innerText;
-            sessionStorage.setItem("headerRead", "true");
+          const headerElem = articleElem.querySelector('.recipe-header');
+          let headerText = headerElem ? headerElem.innerText : "";
+          let articleText = articleElem.innerText || "";
+          if (headerText && articleText.indexOf(headerText) === -1) {
+            fullText = headerText + "\n" + articleText;
           } else {
-            // בפעמים הבאות – נסה להסיר את החלק של .recipe-header מהעותק
-            let cloneArticle = articleElem.cloneNode(true);
-            let headerElem = cloneArticle.querySelector(".recipe-header");
-            if (headerElem) headerElem.remove();
-            fullText = cloneArticle.innerText;
+            fullText = articleText;
           }
         }
       } else {
-        // בדפים אחרים – אם לא נקרא header כבר, קרא את כל הדף, אחרת רק את main
-        if (!sessionStorage.getItem("headerRead")) {
-          fullText = document.body.innerText;
-          sessionStorage.setItem("headerRead", "true");
-        } else {
-          const mainEl = document.querySelector("main.main-content");
-          fullText = mainEl ? mainEl.innerText : document.body.innerText;
-        }
+        fullText = document.body.innerText;
       }
       
       if (!fullText) return;
+      
       const utterance = new SpeechSynthesisUtterance(fullText);
-      utterance.lang = "he-IL";
+      utterance.lang = "he-IL"; // הגדרת השפה לעברית
       window.speechSynthesis.speak(utterance);
     }
 
@@ -147,7 +136,6 @@
       if (localStorage.getItem("largeText") === "true") {
         document.body.classList.add("large-text");
       }
-      // אם מצב דיבור פעיל, ביטול קריאה קודמת והפעלת קריאה בדף החדש
       if (localStorage.getItem("speechModeActive") === "true") {
         window.speechSynthesis.cancel();
         speakPageText();
