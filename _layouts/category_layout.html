@@ -40,7 +40,7 @@ layout: default
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: var(--page-bg-color);
+  background-color: var(--row-stripe-odd); /* שינוי: השתמשנו ב-var(--background-color) */
   color: var(--text-color);
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
@@ -57,19 +57,20 @@ layout: default
 
 /* כרטיס מתכון */
 .recipe-card {
-  background-color: var(--category-bg-color);
+  background-color: var(--card-bg-color); /* שינוי: השתמשנו ב-var(--card-bg-color) */
   border: 2px solid var(--category-border-color);
   border-radius: 8px;
   padding: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 .recipe-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  background-color: var(--card-hover-bg-color); /* שינוי: בעת ריחוף, רקע הקלף משתנה ל-var(--card-hover-bg-color) */
 }
-/* כרטיס מתכון זוגי – צבע רקע חלופי */
+/* כרטיס מתכון זוגי – אחידות, אין צבע רקע חלופי */
 .recipe-card:nth-child(even) {
-  background-color: var(--category-bg-alt);
+  background-color: var(--card-bg-color); /* שינוי: גם הקלפים הזוגיים יקבלו את var(--card-bg-color) */
 }
 
 /* תמונת המתכון */
@@ -117,6 +118,7 @@ layout: default
 }
 .view-recipe-btn:hover {
   background-color: var(--button-hover-bg-color);
+  transform: translateY(-3px);
 }
 
 /* כפתור חזרה לדף הבית */
