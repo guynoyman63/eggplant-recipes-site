@@ -106,6 +106,11 @@ permalink: /
 /* עיצוב כללי לדף הבית */
 /* ------------------------- */
 
+.category-page h1 {
+    /* כותרת "קטגוריות מתכונים" – לפי ההמלצה: var(--primary-color) */
+    color: var(--primary-color);
+}
+
 /* הגדרת צבעי קישורים */
 .category-page a, 
 .category-page a:visited {
@@ -121,7 +126,8 @@ permalink: /
     max-width: 90vw;
     margin: auto;
     padding: 2rem;
-    background-color: var(--page-bg-color);
+    /* רקע הדף – לפי ההמלצה: var(--background-color) */
+    background-color: var(--row-stripe-odd);
     border-radius: 12px;
 }
 
@@ -132,14 +138,16 @@ permalink: /
     gap: 2rem;
 }
 .category-card {
-    background-color: var(--category-bg-color);
+    /* רקע הקלפים – לפי ההמלצה: var(--card-bg-color) */
+    background-color: var(--card-bg-color);
     border-radius: 12px;
     padding: 15px;
     border: 2px solid var(--category-border-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .category-card:nth-child(odd) {
-    background-color: var(--category-bg-alt);
+    /* אחידות ברקע – גם קלפי הזוגי והאי-זוגי יוצגו עם var(--card-bg-color) */
+    background-color: var(--card-bg-color);
 }
 .recipe-preview-grid {
     display: grid;
@@ -165,6 +173,8 @@ permalink: /
 /* תוכן קטגוריה */
 .category-content h2 {
     margin-top: 0;
+    /* כותרות קטגוריות – לפי ההמלצה: var(--secondary-color) */
+    color: var(--secondary-color);
 }
 .category-content p {
     margin: 0.5rem 0;
@@ -173,10 +183,14 @@ permalink: /
     display: inline-block;
     margin-top: 10px;
     padding: 8px 12px;
-    background-color: var(--category-border-color);
-    color: #fff;
+    background-color: var(--button-bg-color) !important;
+    color: var(--button-text-color) !important ;
     text-decoration: none;
     border-radius: 8px;
+}
+.btn:hover {
+  background-color: var(--button-hover-bg-color) !important ;
+  transform: translateY(-3px);
 }
 
 /* עיצוב למובייל */
@@ -203,7 +217,8 @@ permalink: /
     vertical-align: top;
 }
 .carousel-category-box {
-    background-color: var(--category-bg-color);
+    /* ברקע הקרוסלה – גם כאן: var(--card-bg-color) */
+    background-color: var(--card-bg-color);
     border: 2px solid var(--category-border-color);
     border-radius: 12px;
     padding: 15px;
@@ -289,9 +304,12 @@ permalink: /
         background: none;
         padding: 0;
         border-radius: 0;
+        /* ב-Media Query גם לוודא שהכותרת נשארת var(--primary-color) */
+        color: var(--primary-color);
     }
     .mobile-carousel .carousel-item:nth-child(odd) .carousel-category-box {
-        background-color: var(--category-bg-alt);
+        /* שינוי אחידות הרקע בקרוסלה */
+        background-color: var(--card-bg-color);
     }
 }
 
