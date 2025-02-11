@@ -11,8 +11,11 @@ layout: default
       {% for recipe in recipes %}
       <div class="recipe-card">
         <a href="/recipes/{{ recipe.id }}/">
-          <img src="{{ recipe.image | default: '/images/placeholder.jpg' | relative_url }}" 
-               alt="{{ recipe.title }}">
+          <!-- עטיפת התמונה במיכל שמקבל את הגבול -->
+          <div class="image-wrapper">
+            <img src="{{ recipe.image | default: '/images/placeholder.jpg' | relative_url }}" 
+                 alt="{{ recipe.title }}">
+          </div>
           <div class="recipe-info">
             <h2>{{ recipe.title }}</h2>
             <p>{{ recipe.description | default: "אין תיאור זמין למתכון זה." }}</p>
@@ -34,13 +37,13 @@ layout: default
 /* עיצוב דף הקטגוריה – המראה הרגיל */
 /* ------------------------------- */
 
-/* הגדרות עימוד, רקע, קצוות ועוד */
+/* עיצוב העמוד */
 .category-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: var(--row-stripe-odd); /* שינוי: השתמשנו ב-var(--background-color) */
+  background-color: var(--placeholder-bg-color);
   color: var(--text-color);
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
@@ -57,7 +60,7 @@ layout: default
 
 /* כרטיס מתכון */
 .recipe-card {
-  background-color: var(--card-bg-color); /* שינוי: השתמשנו ב-var(--card-bg-color) */
+  background-color: var(--card-bg-color);
   border: 2px solid var(--category-border-color);
   border-radius: 8px;
   padding: 1rem;
@@ -66,20 +69,28 @@ layout: default
 .recipe-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-  background-color: var(--card-hover-bg-color); /* שינוי: בעת ריחוף, רקע הקלף משתנה ל-var(--card-hover-bg-color) */
+  background-color: var(--card-hover-bg-color);
 }
-/* כרטיס מתכון זוגי – אחידות, אין צבע רקע חלופי */
+/* כרטיס מתכון זוגי – אחידות */
 .recipe-card:nth-child(even) {
-  background-color: var(--card-bg-color); /* שינוי: גם הקלפים הזוגיים יקבלו את var(--card-bg-color) */
+  background-color: var(--card-bg-color);
 }
 
-/* תמונת המתכון */
+/* עטיפת התמונה – הגבול מוחל על המיכל, לא על התמונה עצמה */
+.image-wrapper {
+  border: 2px solid var(--image-border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* תמונת המתכון בתוך המיכל */
 .recipe-card img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 8px;
   transition: transform 0.3s ease;
+  display: block;
 }
 .recipe-card img:hover {
   transform: scale(1.05);
@@ -166,5 +177,15 @@ layout: default
 .high-contrast .back-button {
   background-color: var(--high-contrast-btn) !important;
   color: var(--high-contrast-link) !important;
+}
+
+/* אנימציה */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 </style>
