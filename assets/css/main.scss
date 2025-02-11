@@ -51,9 +51,9 @@ body {
    --------------------------------------------------------- */
    :root {
     --primary-color: #000000; /* שחור עמוק ואלגנטי */
-    --secondary-color: #2A5C99; /* כחול עמוק ומתוחכם */
+    --secondary-color: #; /* כחול עמוק ומתוחכם */
     --accent-color: #6A0DAD; /* סגול חציל כהה (לא בשימוש אבל רשום) */
-    --background-color: #F4F4F4; /* אפור בהיר מאוד – רקע נייטרלי */
+    --background-color: #FCFAF5; /* אפור בהיר מאוד – רקע נייטרלי */
     --text-color: #1C1C1C; /* טקסט כהה ונוח לקריאה */
   
     --button-bg-color: #2A5C99; /* כחול עמוק במקום האדום */
@@ -61,10 +61,11 @@ body {
 
     --button-text-color: #FFFFFF; /* טקסט לבן על כפתורים */
   
-    --card-bg-color: #FFFFFF; /* רקע קלפים לבן – נותן ניגודיות */
-    --card-hover-bg-color: #E8E8E8; /* אפור בהיר יותר בריחוף */
+    --card-bg-color: #FCFAF5; /* שמנת בהירה מאוד, כמעט לבן */
+    --card-hover-bg-color: #F5F2EB; /* שמנת מעט כהה יותר לריחוף */
+    --image-border-color: #FFD700;
   
-    --placeholder-bg-color: #D9D9D9; /* רקע שדות קלט */
+    --placeholder-bg-color: #B0BBC9; /* רקע שדות קלט */
     --placeholder-text-color: #4A4A4A; /* טקסט קלט כהה */
   
     --row-stripe-even: #F0F0F0; /* פסי טבלה בהירים */
@@ -78,7 +79,7 @@ body {
     --category-bg-color: #FFFFFF; /* רקע קטגוריות לבן */
     --category-bg-alt: #E2E2E2; /* רקע קטגוריות מתחלפות אפור רך */
     --category-border-color: #2A5C99; /* מסגרת קטגוריות בכחול עמוק */
-  
+    --image-border-color: #FFD700;
     /* צבעים מיוחדים לנגישות */
     --high-contrast-bg: #000000;
     --high-contrast-text: #FFFFFF;
@@ -87,6 +88,7 @@ body {
     --high-contrast-btn-hover: #666666;
   }
   
+
   
   
   
@@ -318,15 +320,15 @@ body {
   margin: 0 auto 2rem;
   padding: 2rem;
   text-align: center;
-  background-color: var(--row-stripe-odd); /* שונה מ־var(--secondary-color) */
+  background-color: var(--placeholder-bg-color);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   color: var(--text-color);
 }
 
 .recipe-container {
-  margin-top: 3rem; /* מסך גדול */
-  background-color: var(--category-bg-color); /* שונה מ־var(--card-bg-color) */
+  margin-top: 3rem;
+  background-color: var(--background-color);
   border: 2px solid var(--category-border-color);
   border-radius: 12px;
   padding: 1.5rem 1rem;
@@ -339,7 +341,7 @@ body {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.6);
 }
 
-/* התאמה למסכים קטנים */
+/* התאמות למסכים קטנים */
 @media (max-width: 768px) {
   .recipe-container {
     margin-top: 3rem !important;
@@ -350,29 +352,34 @@ body {
   }
 }
 
-/* עוד יותר קטנים */
-@media (max-width: 480px) {
-  .recipe-container {
-    margin-top: 3rem !important;
-    padding: 1rem !important;
-  }
-}
-
 /* כותרת המתכון */
 .recipe-header h1 {
   font-size: 3rem;
-  color: var(--primary-color); /* שונה מ־var(--text-color) */
+  color: var(--primary-color);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 1rem;
 }
 
-.recipe-image {
-  max-width: 80%;
-  height: auto;
+/* עטיפת תמונת המתכון - הגבול מוחל על המיכל */
+.image-wrapper {
+  display: block;
+  max-width: 80%;            /* שומר על גודל יחסי כמו שהתמונה הייתה בעבר */
+  margin: 1rem auto 2rem;     /* ריווח חיצוני כפי שהיה */
+  border: 2px solid var(--image-border-color);
   border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
-  margin: 1rem auto 2rem;
+}
+
+/* תמונת המתכון עצמה - תמלא את המיכל */
+.recipe-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
 }
 
 /***********************************************************
@@ -416,41 +423,30 @@ body {
 
 /***********************************************************
   4) מצרכים והוראות (ingredients / instructions)
-     - כותרת עם פס רקע
-     - רווח גדול יותר בין כותרת לרשימה
-     - רשימה עם פסים צמודים
 ************************************************************/
-
-/* "קונטיינר" פנימי שמאגד את הכותרת והרשימה לאותו רוחב */
 .ingredients, 
 .instructions {
-  margin-bottom: 8rem;        /* רווח מתחת לכל בלוק */
+  margin-bottom: 8rem;
   direction: rtl;
-  /* הגדרה משותפת לרוחב אחיד */
-  max-width: 650px;          
-  margin-left: auto;          /* למרכז במצב רוחב גדול */
+  max-width: 650px;
+  margin-left: auto;
   margin-right: auto;
 }
 
-/* הכותרות עצמן – בלי קו תחתון, עם פס רקע */
 .ingredients h2,
 .instructions h2 {
   font-size: 1.6rem;
   color: var(--primary-color);
-  margin: 0;                      /* אפס רווח חיצוני */
-  padding: 0.75rem;               /* קצת רווח פנימי כדי לראות את פס הרקע */
-  
-  text-align: right;              /* ברירת מחדל בצד ימין */
+  margin: 0;
+  padding: 0.75rem;
+  text-align: right;
 }
 
-/* רווח בין הכותרת לרשימה */
 .ingredients h2 + ol,
 .instructions h2 + ol {
   margin-top: 4rem;
 }
 
-/* במסכים עד 768px – הכותרות באמצע
-   + הקטנה קלה של max-width כדי לא להיצמד לימין המסך */
 @media (max-width: 768px) {
   .ingredients,
   .instructions {
@@ -458,45 +454,40 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
-
   .ingredients h2,
   .instructions h2 {
     text-align: center;
   }
 }
 
-/* הרשימות עצמן */
 .ingredients ol,
 .instructions ol {
   list-style: none;
-  margin: 0;           /* בלי רווח חיצוני */
-  padding: 0;          /* בלי רווח פנימי */
+  margin: 0;
+  padding: 0;
   line-height: 1.8;
   text-align: right;
-  /* נמתח לגמרי */
-  width: 100%; 
+  width: 100%;
 }
 
-/* כל שורה: בלי רווח בצדדים, פסים צמודים */
 .ingredients ol li,
 .instructions ol li {
-  margin: 0;              /* בלי רווח חיצוני */
-  padding: 0.5rem;        /* ריווח פנימי */
+  margin: 0;
+  padding: 0.5rem;
   border-radius: 0;
   counter-increment: step-counter;
   display: flex;
   align-items: flex-start;
-  width: 97.5%;           /* ברירת מחדל למסך רגיל */
+  width: 97.5%;
 }
 
 @media (max-width: 768px) {
   .ingredients ol li,
   .instructions ol li {
-    width: 95%;           /* במובייל – מצמצם לרוחב 95% */
+    width: 95%;
   }
 }
 
-/* פסים לסירוגין */
 .ingredients ol li:nth-child(odd),
 .instructions ol li:nth-child(odd) {
   background-color: var(--row-stripe-odd);
@@ -506,7 +497,6 @@ body {
   background-color: var(--row-stripe-even);
 }
 
-/* מספור */
 .ingredients ol li::before,
 .instructions ol li::before {
   content: counter(step-counter) ". ";
@@ -554,12 +544,10 @@ body {
   gap: 4px;
 }
 
-/* אייקונים בכפתורים */
 .recipe-actions .btn .icon {
   font-size: 1rem;
 }
 
-/* התאמה למסכים קטנים */
 @media (max-width: 480px) {
   .recipe-actions {
     display: grid;
@@ -567,12 +555,10 @@ body {
     gap: 5px;
     justify-items: center;
   }
-
   .recipe-actions a {
     width: 100%;
     max-width: 120px;
   }
-
   .recipe-actions button {
     grid-column: span 2;
     width: 100%;
@@ -645,7 +631,7 @@ body {
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
-    background-color: var(--row-stripe-odd); /* שונה מ־var(--page-bg-color) */
+    background-color: var(--placeholder-bg-color); /* שונה מ־var(--page-bg-color) */
     color: var(--text-color);
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
@@ -719,6 +705,25 @@ body {
       grid-template-columns: 1fr;
     }
   }
+  @media (min-width: 769px) {
+    /* התאמות לדף הבית במצב מחשב: צמצום הרווח מתחת לתמונה והצבת הכותרת מתחתיה */
+    .category-page .recipe-item .image-wrapper {
+      margin-bottom: 0.5rem;  // צמצום הרווח שמתחת לתמונה
+    }
+    .category-page .recipe-item .recipe-title {
+      display: block;         // וודא שהכותרת תופיע כשורה נפרדת
+      margin-top: 0.5rem;      // רווח קטן מעל הכותרת
+      text-align: center;     // מרכז את הטקסט
+    }
+  }
+  @media (max-width: 768px) {
+    .mobile-carousel {
+      background-color: #B0BBC9;
+    }
+  }
+  
+
+  
   
 
 /* ---------------------------------------------------------
@@ -740,27 +745,52 @@ body {
   }
 }
 
+
+
 /* ---------------------------------------------------------
    8) עמוד "single" (למשל אודות)
-   --------------------------------------------------------- */
+--------------------------------------------------------- */
 .single.about-page {
-  max-width: 1000px;    /* ניתן לשנות ל-1200px אם רוצים */
+  max-width: 1000px;       /* ניתן לשנות ל-1200px אם רוצים */
   margin: 1rem auto 2rem;
   padding: 1rem;
-  direction: rtl;       /* טקסט עברי */
+  direction: rtl;          /* טקסט עברי */
   text-align: right;    
   background-color: var(--row-stripe-even);
   color: var(--text-color);
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  border: 2px solid var(--category-border-color);
 }
 
-/* הכותרת של העמוד (אודות חצילי נוימן) */
+/* עטיפת תמונת הבאנר - נטען כבלוק כדי להסיר ריווח מיותר */
+.about-banner-wrapper {
+  display: block;
+  border: 2px solid var(--image-border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 1rem auto;
+  padding: 0;
+}
+
+/* תמונת הבאנר עצמה - תמלא את המיכל ללא margin/padding */
+.about-banner {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  /* אם רוצים שהתמונה תשתלב עם הגבול, ניתן גם להעביר את ה-border-radius מהעטיפה */
+  border-radius: inherit;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+/* הכותרת של העמוד */
 .single.about-page .about-header h1 {
   font-size: 4rem;
   margin-bottom: 4rem;
-  text-align: center;         /* הכותרת ממורכזת */
-  color: var(--primary-color); /* אפשר accent-color לבלוט */
+  text-align: center;
+  color: var(--primary-color);
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
@@ -769,45 +799,29 @@ body {
 .single.about-page .about-content {
   line-height: 1.8;
   font-size: 1.5rem;
-  margin-bottom: 3rem; /* רווח לפני הכפתור */
+  margin-bottom: 3rem;
 }
 
-/* פסים מתחלפים בשורות (נניח בכל פסקה <p>) */
+/* עיצוב פסקאות התוכן */
 .single.about-page .about-content p {
-  margin: 0;             /* איפוס margin של <p> */
-  padding: 0.5rem;       /* ריווח פנימי */
+  margin: 0;
+  padding: 0.5rem;
 }
-
 .single.about-page .about-content p:nth-child(odd) {
   background-color: var(--row-stripe-odd); 
 }
 .single.about-page .about-content p:nth-child(even) {
   background-color: var(--row-stripe-even);
 }
-.about-banner {
-  display: block;
-  max-width: 80%;
-  margin: 1rem auto 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-}
 
-@media (max-width: 768px) {
-  .about-banner {
-    max-width: 95%;
-  }
-}
-
-/* כפתור "חזרה לדף הבית" בתחתית (באמצע) */
+/* כפתור "חזרה לדף הבית" */
 .single.about-page .about-actions {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
 }
-
-/* הכפתור עצמו */
 .single.about-page .about-actions .back-home {
-  @extend .btn;        /* נניח שיש לך .btn כללי */
+  /* כאן מניחים שמוגדר כבר .btn כללי */
   margin: 0 auto;
 }
 
@@ -817,15 +831,18 @@ body {
     margin: 1rem auto 1rem;
     padding: 1rem;
   }
-  
   .single.about-page .about-header h1 {
     font-size: 1.8rem;
   }
-  
   .single.about-page .about-content p {
     padding: 0.4rem;
   }
+  .about-banner-wrapper {
+    margin: 1rem auto;
+  }
 }
+
+
 
 /* ---------------------------------------------------------
    🎨 8) מצב ניגודיות גבוהה (High Contrast Mode)
