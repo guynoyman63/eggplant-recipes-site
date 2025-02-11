@@ -65,10 +65,10 @@ layout: default
     </section>
 
     <div class="recipe-actions">
-      {% if page.category and page.subcategory %}
-        <a href="/categories/{{ page.category }}/{{ page.subcategory }}/" class="btn">
+      {% if page.category %}
+        <a href="/categories/{{ page.category }}/" class="btn">
           <span class="icon"><i class="fas fa-arrow-circle-left"></i></span>
-          חזרה לתת-קטגוריה
+          חזרה לקטגוריה
         </a>
       {% endif %}
       <a href="/" class="btn">
