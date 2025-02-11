@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 <div class="recipe-page">
   <article class="recipe-container">
     <header class="recipe-header">
@@ -9,7 +10,10 @@ layout: default
         <p class="short-description">{{ page.short_description }}</p>
       {% endif %}
       {% if page.image %}
-        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="recipe-image">
+        <!-- עטיפת תמונת המתכון במיכל לקבלת הגבול -->
+        <div class="image-wrapper">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="recipe-image">
+        </div>
       {% endif %}
     </header>
 
