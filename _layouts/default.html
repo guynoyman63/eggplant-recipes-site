@@ -46,9 +46,9 @@
   </style>
 </head>
 <body class="layout-body">
-  <header class="site-header">
-    {% include header.html %}
-  </header>
+
+  <!-- כולל את ה-Header (בתוכו כבר יש <header>...</header>) -->
+  {% include header.html %}
 
   <main class="main-content">
     {{ content }}
@@ -142,5 +142,6 @@
       }
     };
   </script>
+
 </body>
 </html>
