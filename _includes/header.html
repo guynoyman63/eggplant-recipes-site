@@ -1,19 +1,28 @@
 <header class="site-header">
-    <div class="header-inner">
-      <!-- אזור הלוגו -->
-      <div class="site-logo">
-        <a href="{{ site.baseurl }}/">
-          <img src="{{ site.baseurl }}/images/logo.png" alt="לוגו האתר" class="logo-img">
-        </a>
-      </div>
-  
-      <!-- תפריט ניווט -->
-      <nav class="site-nav">
-        <ul>
-          <li><a href="{{ site.baseurl }}/">דף הבית</a></li>
-          <li><a href="{{ site.baseurl }}/search/">חיפוש</a></li>
-          <li><a href="{{ site.baseurl }}/about/">אודות חצילי נוימן</a></li>
-        </ul>
-      </nav>
+  <div class="header-inner">
+
+    <!-- checkbox + label משמשים כטריגר לתפריט ההמבורגר במובייל -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    
+    <!-- אזור הלוגו -->
+    <div class="site-logo">
+      <a href="{{ site.baseurl }}/">
+        <img src="{{ site.baseurl }}/images/logo.png" alt="לוגו האתר" class="logo-img">
+      </a>
     </div>
+
+    <!-- תפריט ניווט -->
+    <nav class="site-nav">
+      <ul>
+        <li><a href="{{ site.baseurl }}/">דף הבית</a></li>
+        <li><a href="{{ site.baseurl }}/search/">חיפוש</a></li>
+        <li><a href="{{ site.baseurl }}/about/">אודות חצילי נוימן</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
