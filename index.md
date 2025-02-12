@@ -228,6 +228,9 @@ permalink: /
   margin: 0 2% 30px 2%;
   vertical-align: top;
 }
+.carousel-item:first-child {
+  margin-top: 30px;
+}
 .carousel-category-box {
   background-color: var(--card-bg-color);
   border: 2px solid var(--category-border-color)!important;
