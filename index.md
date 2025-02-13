@@ -115,8 +115,15 @@ permalink: /
 /* ------------------------- */
 
 .category-page h1 {
-  color: var(--primary-color);
-}
+  font-size: 4rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+    color: var(--primary-color); /* שונה מ־var(--accent-color) */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
 
 .category-page a,
 .category-page a:visited {
@@ -273,8 +280,10 @@ permalink: /
   gap: 10px;
   overflow-x: auto;
   padding-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 10px; 
 }
+
+
 .carousel-recipe-item {
   display: flex;
   flex-direction: column;
@@ -314,19 +323,33 @@ permalink: /
     display: none;
   }
   .category-page {
-    padding: 0.5rem 2%;
-    margin: 30px auto 30px auto;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    background-color: var(--background-color); /* רקע זהה לרקע של הכותרת */
+    text-align: center;
   }
   .category-page h1 {
-    font-size: 2rem;
-    line-height: 1.2;
-    margin: 20px 0 30px 0;
+    font-size: 2.4rem; /* גודל הכותרת */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); /* הוספת הצללה */
+    line-height: 1.3;
+    margin: 0;
+    padding: 0 0; /* רווח פנימי למעלה ולמטה */
+    background-color: var(--placeholder-bg-color); /* רקע אחיד */
+    display: block;
+    width: 100vw; /* הרחבת האלמנט לכל רוחב המסך */
     text-align: center;
-    background: none;
-    padding: 0;
     border-radius: 0;
-    color: var(--primary-color);
   }
+
+  /* ביטול רווחים גלובליים כדי להבטיח שהכותרת מחוברת לרקע */
+  body, html {
+    margin : 0;
+    padding: 0;
+    width: 100vw;
+    background-color: var(--background-color); /* שמירה על רקע אחיד */
+  }
+}
   .mobile-carousel .carousel-item:nth-child(odd) .carousel-category-box {
     background-color: var(--card-bg-color);
   }
