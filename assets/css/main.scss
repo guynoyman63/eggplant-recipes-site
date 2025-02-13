@@ -50,9 +50,9 @@ body {
    1) משתני CSS
    --------------------------------------------------------- */
    :root {
-    --primary-color: #000000; /* שחור עמוק ואלגנטי */
+    --primary-color: #1E4473; /* שחור עמוק ואלגנטי */
     --secondary-color: #; /* כחול עמוק ומתוחכם */
-    --accent-color: #6A0DAD; /* סגול חציל כהה (לא בשימוש אבל רשום) */
+    --accent-color: #FFD700; /* סגול חציל כהה (לא בשימוש אבל רשום) */
     --background-color: #FCFAF5; /* אפור בהיר מאוד – רקע נייטרלי */
     --text-color: #1C1C1C; /* טקסט כהה ונוח לקריאה */
   
@@ -65,7 +65,7 @@ body {
     --card-hover-bg-color: #F5F2EB; /* שמנת מעט כהה יותר לריחוף */
     --image-border-color: #FFD700;
   
-    --placeholder-bg-color: #B0BBC9; /* רקע שדות קלט */
+    --placeholder-bg-color: #DCE4EE; /* רקע שדות קלט */
     --placeholder-text-color: #4A4A4A; /* טקסט קלט כהה */
   
     --row-stripe-even: #F0F0F0; /* פסי טבלה בהירים */
@@ -75,7 +75,7 @@ body {
     --heading-stripe-even: #000000; /* כותרות שניות בשחור */
   
     /*--------------- דף הבית -----------------*/
-    --page-bg-color: #ECECEC; /* רקע כללי אפור בהיר */
+    --page-bg-color: #E3E8F0; /* רקע כללי אפור בהיר */
     --category-bg-color: #FFFFFF; /* רקע קטגוריות לבן */
     --category-bg-alt: #E2E2E2; /* רקע קטגוריות מתחלפות אפור רך */
     --category-border-color: #2A5C99; /* מסגרת קטגוריות בכחול עמוק */
@@ -233,7 +233,7 @@ body {
   left: 0;
   width: 100%;
   height: 20px;
-   background: linear-gradient(to bottom, rgba(176, 187, 201, 0.3), rgba(120, 130, 145, 0.02));
+  background: linear-gradient(to bottom, rgba(176, 187, 201, 0.3), rgba(120, 130, 145, 0.02));
   pointer-events: none;
   z-index: 99;
 }
@@ -790,7 +790,7 @@ body {
   }
   @media (max-width: 768px) {
     .mobile-carousel {
-      background-color: #B0BBC9;
+      background-color: var(--placeholder-bg-color);
     }
   }
   
